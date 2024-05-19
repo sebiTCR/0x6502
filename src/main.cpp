@@ -16,7 +16,7 @@ struct Memory{
             data[i] = 0x0;
     }
 
-    void write_word (u32 Cycles, Word data_t, u32 addr){
+    void write_word (u32 cycles, Word data_t, u32 addr){
         data[addr]     = data_t & 0xFF;
         data[addr + 1] = ( data_t >> 8);
         cycles -= 2;

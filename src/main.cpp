@@ -4,6 +4,7 @@
 #include "emu/components/cpu.hpp"
 #include "emu/components/ram.hpp"
 #include "emu/components/instructions/instructions.hpp"
+#include "emu/graphics/window.hpp"
 #include "emu/types.hpp"
 
 
@@ -16,6 +17,7 @@ std::vector<Byte> program = {
 
 
 int main(){
+    Window window;
     RAM mem;
     CPU cpu;
 
@@ -37,9 +39,9 @@ int main(){
     mem[0xFFFE] = OPCODE_INX;
     mem[0xFFFF] = OPCODE_INY;
 
-
-
     cpu.execute(6, mem);
+
+    window.display(cpu, mem);
 
     return 0;
 }

@@ -1,0 +1,1 @@
+SOURCES += files('glad.cpp', 'window.cpp')

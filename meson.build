@@ -11,9 +11,11 @@ gmock = gtest_proj.get_variable('gmock_dep')
 
 SOURCES = []
 TESTS = []
-INCDIR = include_directories('include')
+INCDIR = [include_directories('include'), include_directories('external/imgui_club/imgui_memory_editor')]
 DEPS = [
   dependency('spdlog'),
+  dependency('glfw3'),
+  dependency('imgui'),
   gtest,
   gmock
 ]

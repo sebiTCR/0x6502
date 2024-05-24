@@ -1,0 +1,1 @@
+INSTRUCTION_TESTS = files('lda_tests.cpp')

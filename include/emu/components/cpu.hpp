@@ -1,7 +1,16 @@
 #pragma once
 
-#define SET_NEGATIVE_FLAG (cpu->registers.ACC & 0b10000000) > 0;
-#define SET_ZERO_FLAG (cpu->registers.ACC == 0); 
+#define SET_ACC_NEGATIVE_FLAG   (cpu->registers.ACC & 0b10000000) > 0;
+#define SET_ACC_ZERO_FLAG       (cpu->registers.ACC == 0);
+
+#define SET_X_NEGATIVE_FLAG     (cpu->registers.X & 0b10000000) > 0;
+#define SET_X_ZERO_FLAG              (cpu->registers.X == 0);
+
+#define SET_Y_NEGATIVE_FLAG     (cpu->registers.Y & 0b10000000) > 0;
+#define SET_Y_ZERO_FLAG              (cpu->registers.Y == 0);
+
+
+
 #include "emu/components/ram.hpp"
 #include "emu/types.hpp"
 #include "emu/components/instructions/instructions.hpp"
@@ -65,6 +74,17 @@ public:
      * @return Byte Fetched data
      */
     Byte gfetch(u32 cycles, Byte address, RAM& ram);
+
+
+    /**
+     * @brief Ghost Fetching - Fetch a Word from the RAM without altering the Program Counter
+     * 
+     * @param cycles Cycles to do
+     * @param address Address from where to fetch the data
+     * @param ram Computer's RAM
+     * @return Byte Fetched data
+     */
+    Word gfetch(u32 cycles, Word address, RAM& ram);
 
 
     /**

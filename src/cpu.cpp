@@ -43,8 +43,38 @@ void CPU::execute(u32 cycles, RAM& mem){
                 break;
             }
 
+            case OPCODE_INX:{
+                instructions->run_inx(this, mem, cycles);
+                break;
+            }
+
+            case OPCODE_INY:{
+                instructions->run_iny(this, mem, cycles);
+                break;
+            }
+
             case OPCODE_JSR: {
                 instructions->run_jsr(this, mem, cycles);
+                break;
+            }
+
+            case OPCODE_CLC: {
+                instructions->run_clc(this, mem, cycles);
+                break;
+            }
+
+            case OPCODE_CLD: {
+                instructions->run_cld(this, mem, cycles);
+                break;
+            }
+
+            case OPCODE_CLI: {
+                instructions->run_cli(this, mem, cycles);
+                break;
+            }
+
+            case OPCODE_CLV: {
+                instructions->run_clv(this, mem, cycles);
                 break;
             }
         }
@@ -55,6 +85,13 @@ void CPU::execute(u32 cycles, RAM& mem){
 //Ghost fetching without affecting the PC
 Byte CPU::gfetch(u32 cycles, Byte address, RAM& mem){
     Byte data = mem[address];
+    cycles--;
+    return data;
+}
+
+
+Word CPU::gfetch(u32 cycles, Word address, RAM& mem){
+    Word data = mem[address];
     cycles--;
     return data;
 }

@@ -43,6 +43,82 @@ void CPU::execute(u32 cycles, RAM& mem){
                 break;
             }
 
+            case OPCODE_LDA_ABS:{
+                instructions->run_lda_abs(this, mem, cycles);
+                break;    
+            }
+
+            case OPCODE_LDA_ABX:{
+                instructions->run_lda_abx(this, mem, cycles);
+                break;    
+            }
+
+            case OPCODE_LDA_ABY:{
+                instructions->run_lda_aby(this, mem, cycles); 
+                break;   
+            }
+
+            case OPCODE_LDA_INX:{
+                instructions->run_lda_inx(this, mem, cycles);
+                break;    
+            }
+
+            case OPCODE_LDA_INY:{
+                instructions->run_lda_iny(this, mem, cycles); 
+                break;   
+            }
+
+            case OPCODE_LDX_IM:{
+                instructions->run_ldx_im(this, mem, cycles); 
+                break;   
+            }
+
+            case OPCODE_LDX_ZP:{
+                instructions->run_ldx_zp(this, mem, cycles);  
+                break;  
+            }
+
+            case OPCODE_LDX_ZPY:{
+                instructions->run_ldx_zpy(this, mem, cycles);  
+                break;  
+            }
+
+            case OPCODE_LDX_ABS:{
+                instructions->run_ldx_abs(this, mem, cycles);
+                break;   
+            }
+
+            case OPCODE_LDX_ABY:{
+                instructions->run_ldx_aby(this, mem, cycles); 
+                break;   
+            }
+
+            case OPCODE_LDY_IM:{
+                instructions->run_ldy_im(this, mem, cycles);   
+                break; 
+            }
+
+            case OPCODE_LDY_ZP:{
+                instructions->run_ldy_zp(this, mem, cycles); 
+                break;   
+            }
+
+            case OPCODE_LDY_ZPX:{
+                instructions->run_ldy_zpx(this, mem, cycles);  
+                break;  
+            }
+
+            case OPCODE_LDY_ABS:{
+                instructions->run_ldy_abs(this, mem, cycles);   
+                break; 
+            }
+
+            case OPCODE_LDY_ABX:{
+                instructions->run_ldy_abx(this, mem, cycles); 
+                break;   
+            }
+
+
             case OPCODE_INX:{
                 instructions->run_inx(this, mem, cycles);
                 break;

@@ -53,6 +53,16 @@ void CPU::execute(u32 cycles, RAM& mem){
                 break;
             }
 
+            case OPCODE_DEX:{
+                instructions->run_dex(this, mem, cycles);
+                break;
+            }
+
+            case OPCODE_DEY:{
+                instructions->run_dey(this, mem, cycles);
+                break;
+            }
+
             case OPCODE_JSR: {
                 instructions->run_jsr(this, mem, cycles);
                 break;

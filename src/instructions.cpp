@@ -66,6 +66,22 @@ void Instructions::run_iny(CPU* cpu, RAM &ram, u32 cycles){
 }
 
 
+void Instructions::run_dex(CPU* cpu, RAM &ram, u32 cycles){
+    cpu->registers.X--;
+    cpu->registers.Z   = SET_X_ZERO_FLAG;
+    cpu->registers.N   = SET_X_NEGATIVE_FLAG;
+    cycles -= 2;
+}
+
+
+void Instructions::run_dey(CPU* cpu, RAM &ram, u32 cycles){
+    cpu->registers.Y--;
+    cpu->registers.Z   = SET_Y_ZERO_FLAG;
+    cpu->registers.N   = SET_Y_NEGATIVE_FLAG;
+    cycles -= 2;
+}
+
+
 void Instructions::run_clc(CPU* cpu, RAM &ram, u32 cycles){
     cpu->registers.C   = 0;
     cycles -= 2;

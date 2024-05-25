@@ -2,17 +2,17 @@
 #include "emu/components/ram.hpp"
 
 
-Byte ABS(CPU* cpu_t, RAM ram_t,  u32 cycles_t){
+Word ABS(CPU* cpu_t, RAM ram_t,  u32 cycles_t){
     Byte lo = cpu_t->fetch(cycles_t, ram_t);
     Byte hi = cpu_t->fetch(cycles_t, ram_t);
-    Byte addr = (hi << 8) | lo;
+    Word addr = (hi << 8) | lo;
 
     return addr;
 }
 
 
 Byte ZP0(CPU* cpu_t, RAM ram_t,  u32 cycles_t){
-    Byte addr        = cpu_t->fetch(cycles_t, ram_t);
+    Byte addr = cpu_t->fetch(cycles_t, ram_t);
     cpu_t->registers.ACC = cpu_t->gfetch(cycles_t, addr, ram_t);
 
     addr &= 0x00FF;
@@ -36,16 +36,16 @@ Byte ZPY(CPU* cpu_t, RAM ram_t,  u32 cycles_t){
 }
 
 
-Byte ABX(CPU* cpu_t, RAM ram_t,  u32 cycles_t){
-    Byte addr = ABS(cpu_t, ram_t, cycles_t);
+Word ABX(CPU* cpu_t, RAM ram_t,  u32 cycles_t){
+    Word addr = ABS(cpu_t, ram_t, cycles_t);
     addr += cpu_t->registers.X;
     
     return addr;
 }
 
 
-Byte ABY(CPU* cpu_t, RAM ram_t,  u32 cycles_t){
-    Byte addr = ABS(cpu_t, ram_t, cycles_t);
+Word ABY(CPU* cpu_t, RAM ram_t,  u32 cycles_t){
+    Word addr = ABS(cpu_t, ram_t, cycles_t);
     addr += cpu_t->registers.Y;
     
     return addr;
@@ -55,17 +55,17 @@ Byte ABY(CPU* cpu_t, RAM ram_t,  u32 cycles_t){
 Byte IND(CPU* cpu_t, RAM ram_t,  u32 cycles_t){
     Byte lo = cpu_t->fetch(cycles_t, ram_t);
     Byte hi = cpu_t->fetch(cycles_t, ram_t);
-    Byte addr = (lo << 8) | hi;
-    Byte abs_addr;
+    Word addr = (lo << 8) | hi;
+    Word abs_addr;
 
     // Simulated HW Bug
     if(lo == 0x00FF){
         abs_addr = (
-            cpu_t->gfetch(cycles_t, (Byte)(addr & 0xFF00), ram_t) << 8 |
-            cpu_t->gfetch(cycles_t, (Byte)(addr + 1), ram_t));
+            cpu_t->gfetch(cycles_t, (Word)(addr & 0xFF00), ram_t) << 8 |
+            cpu_t->gfetch(cycles_t, (Word)(addr + 1), ram_t));
     } else {
         abs_addr = (
-            (cpu_t->gfetch(cycles_t, (Byte)(addr + 1), ram_t) << 8) |
+            (cpu_t->gfetch(cycles_t, (Word)(addr + 1), ram_t) << 8) |
              cpu_t->gfetch(cycles_t, (addr), ram_t)
             );
     }
@@ -73,21 +73,21 @@ Byte IND(CPU* cpu_t, RAM ram_t,  u32 cycles_t){
 }
 
 
-Byte INX(CPU* cpu_t, RAM ram_t,  u32 cycles_t){
+Word INX(CPU* cpu_t, RAM ram_t,  u32 cycles_t){
     Byte offset = cpu_t->fetch(cycles_t, ram_t);
     Byte lo     = cpu_t->gfetch(cycles_t, (Byte)(((cpu_t->registers.X) + offset) & 0x0FF), ram_t);
     Byte hi     = cpu_t->gfetch(cycles_t, (Byte)(((cpu_t->registers.X) + offset + 1) & 0x0FF), ram_t);
-    Byte addr   = (hi << 8) | lo;
+    Word addr   = (hi << 8) | lo;
 
     return addr;
 }
 
 
-Byte INY(CPU* cpu_t, RAM ram_t,  u32 cycles_t){
+Word INY(CPU* cpu_t, RAM ram_t,  u32 cycles_t){
     Byte offset = cpu_t->fetch(cycles_t, ram_t);
     Byte lo     = cpu_t->gfetch(cycles_t, (Byte)(((cpu_t->registers.Y) + offset) & 0x0FF), ram_t);
     Byte hi     = cpu_t->gfetch(cycles_t, (Byte)(((cpu_t->registers.Y) + offset + 1) & 0x0FF), ram_t);
-    Byte addr   = (hi << 8) | lo;
+    Word addr   = (hi << 8) | lo;
 
     return addr;
 }

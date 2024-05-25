@@ -1,4 +1,5 @@
 #include "emu/components/cpu.hpp"
+#include <spdlog/spdlog.h>
 
 CPU::CPU(){
     instructions = new Instructions();
@@ -161,6 +162,13 @@ void CPU::execute(u32 cycles, RAM& mem){
 
             case OPCODE_CLV: {
                 instructions->run_clv(this, mem, cycles);
+                break;
+            }
+
+            default:{
+                if(ins == 0)
+                    break;
+                printf("Illegal opcode: %08x\n", ins);
                 break;
             }
         }

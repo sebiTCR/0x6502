@@ -31,17 +31,20 @@
     - [X] INX
     - [X] INY
 
-- [ ] Decrements
+- [-] Decrements
     - [ ] DEC
-    - [ ] DEX
-    - [ ] DEY
+    - [X] DEX
+    - [X] DEY
 
 
-- [ ] Clears
+- [X] Clears
     - [X] CLC
     - [X] CLI
     - [X] CLD
     - [X] CLV
 
 
-- [ ] Comparisons
+- [ ] Operations
+    - [ ] LSR
+    - [ ] NOP
+    - [ ] ORA

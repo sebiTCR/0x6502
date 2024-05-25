@@ -67,14 +67,14 @@ void Window::m_initialize_imgui(){
 }
 
 
-void Window::display(CPU &cpu_t, RAM mem_t){
+void Window::display(CPU &cpu_t, RAM &mem_t){
   while(!glfwWindowShouldClose(m_window)){
     render(cpu_t, mem_t);
   }
 }
 
 
-void Window::render(CPU &cpu_t, RAM mem_t){
+void Window::render(CPU &cpu_t, RAM &mem_t){
     glClearColor(0.1, 0.1, 0.1, 1.0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
@@ -92,7 +92,7 @@ void Window::render(CPU &cpu_t, RAM mem_t){
 }
 
 
-void Window::render_widgets(CPU &cpu_t, RAM mem_t){
+void Window::render_widgets(CPU &cpu_t, RAM &mem_t){
     // ImGui::ShowAboutWindow(&m_show_window);
     // ImGui::ShowDemoWindow(&m_show_window);
     MEM_EDITOR.DrawWindow("RAM", mem_t.data, sizeof(mem_t.data));
@@ -115,8 +115,6 @@ void Window::render_widgets(CPU &cpu_t, RAM mem_t){
     //Code Execution Window
     ImGui::Begin("Control Panel");
         ImGui::SliderInt("Cycle count", &cycle_count, 0, 100);
-
-        printf("X: %i, Y:%i\n", cpu_t.registers.X, cpu_t.registers.Y);
 
         if(ImGui::Button("Run")){
             spdlog::info("Running program with {} cycles.", cycle_count);

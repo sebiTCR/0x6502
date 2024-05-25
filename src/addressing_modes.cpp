@@ -52,7 +52,7 @@ Word ABY(CPU* cpu_t, RAM ram_t,  u32 cycles_t){
 }
 
 
-Byte IND(CPU* cpu_t, RAM ram_t,  u32 cycles_t){
+Word IND(CPU* cpu_t, RAM ram_t,  u32 cycles_t){
     Byte lo = cpu_t->fetch(cycles_t, ram_t);
     Byte hi = cpu_t->fetch(cycles_t, ram_t);
     Word addr = (lo << 8) | hi;

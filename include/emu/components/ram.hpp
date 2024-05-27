@@ -13,5 +13,6 @@ public:
     Byte& operator[]( u32 addr)        { return data[addr]; }
 
     void reset();
-    void write_word (u32 cycles, Word data_t, u32 addr);
+    void write_word     (u32 cycles_t, Word data_t, u32 addr_t);
+    void write_byte     (u32 cycles_t, Byte data_t, u32 addr_t);
 };

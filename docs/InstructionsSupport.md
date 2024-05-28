@@ -1,4 +1,4 @@
-# Instruction Support
+X# Instruction Support
 - [X] LDA
     - [X] Immediate
     - [X] Zero Page
@@ -25,6 +25,63 @@
     - [X] Absolute X
     - [X] Indirect X
 
+- [X] Storings
+    - [X] STA
+    - [X] STX
+    - [X] STY
+  
+- [ ] Stack Operations
+    - [ ] TSX
+    - [ ] TXS
+    - [ ] PHA
+    - [ ] PHP
+    - [ ] PLA
+    - [ ] PLP
+
+- [ ] Logical operators
+  - [ ] AND
+  - [ ] EOR
+  - [ ] ORA
+  - [ ] BIT
+
+- [ ] Arithmetic operations
+  - [ ] ADC
+  - [ ] SBC
+  - [ ] CMP
+  - [ ] CPX
+  - [ ] CPY
+
+- [ ] Shifts
+  - [ ] ASL
+  - [ ] LSR
+  - [ ] ROL
+  - [ ] ROR
+
+- [ ] Jumps & Calls
+  - [ ] JMP
+  - [ ] JSR
+  - [ ] RTS
+
+- [ ] Branches
+  - [ ] BCC
+  - [ ] BCS
+  - [ ] BEQ
+  - [ ] BMI
+  - [ ] BNE
+  - [ ] BPL
+  - [ ] BVC
+  - [ ] BVS
+  
+- [ ] System functions
+  - [ ] BRK
+  - [ ] NOP
+  - [ ] RTI
+
+- [ ] Transfers
+  - [ ] TAX
+  - [ ] TAY
+  - [ ] TXA
+  - [ ] TYA
 
 - [-] Increments
     - [ ] INC
@@ -36,13 +93,11 @@
     - [X] DEX
     - [X] DEY
 
-
 - [X] Clears
     - [X] CLC
     - [X] CLI
     - [X] CLD
     - [X] CLV
-
 
 - [ ] Operations
     - [ ] LSR

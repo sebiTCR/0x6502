@@ -4,10 +4,10 @@
 #define SET_ACC_ZERO_FLAG       (cpu->registers.ACC == 0);
 
 #define SET_X_NEGATIVE_FLAG     (cpu->registers.X & 0b10000000) > 0;
-#define SET_X_ZERO_FLAG              (cpu->registers.X == 0);
+#define SET_X_ZERO_FLAG         (cpu->registers.X == 0);
 
 #define SET_Y_NEGATIVE_FLAG     (cpu->registers.Y & 0b10000000) > 0;
-#define SET_Y_ZERO_FLAG              (cpu->registers.Y == 0);
+#define SET_Y_ZERO_FLAG         (cpu->registers.Y == 0);
 
 
 

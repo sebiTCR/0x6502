@@ -50,6 +50,13 @@ static constexpr Byte OPCODE_CLD     = 0xD8;
 static constexpr Byte OPCODE_CLI     = 0x58;
 static constexpr Byte OPCODE_CLV     = 0xB8;
 
+static constexpr Byte OPCODE_TAX     = 0xAA;
+static constexpr Byte OPCODE_TAY     = 0xA8;
+static constexpr Byte OPCODE_TSX     = 0xBA;
+static constexpr Byte OPCODE_TXA     = 0x8A;
+static constexpr Byte OPCODE_TXS     = 0x9A;
+static constexpr Byte OPCODE_TYA     = 0x98;
+
 
 class CPU; // Dummy
 
@@ -96,6 +103,14 @@ public:
     void run_cld     (CPU* cpu, RAM &ram, u32 cycles);
     void run_cli     (CPU* cpu, RAM &ram, u32 cycles);
     void run_clv     (CPU* cpu, RAM &ram, u32 cycles);
+
+    void run_tax     (CPU* cpu, RAM &ram, u32 cycles);
+    void run_tay     (CPU* cpu, RAM &ram, u32 cycles);
+    void run_tsx     (CPU* cpu, RAM &ram, u32 cycles);
+    void run_txa     (CPU* cpu, RAM &ram, u32 cycles);
+    void run_txs     (CPU* cpu, RAM &ram, u32 cycles);
+    void run_tya     (CPU* cpu, RAM &ram, u32 cycles);
+
 
 
 

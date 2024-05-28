@@ -13,7 +13,6 @@ Word ABS(CPU* cpu_t, RAM ram_t,  u32 cycles_t){
 
 Byte ZP0(CPU* cpu_t, RAM ram_t,  u32 cycles_t){
     Byte addr = cpu_t->fetch(cycles_t, ram_t);
-    cpu_t->registers.ACC = cpu_t->gfetch(cycles_t, addr, ram_t);
 
     addr &= 0x00FF;
     return addr;

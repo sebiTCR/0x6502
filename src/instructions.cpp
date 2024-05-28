@@ -1,10 +1,11 @@
 #include "emu/components/instructions/instructions.hpp"
 #include "emu/components/instructions/adressing_modes.hpp"
+#include <spdlog/spdlog.h>
 
 
 void Instructions::run_jsr(CPU* cpu, RAM &ram, u32 cycles){
     Word sr_addr = cpu->wfetch(cycles, ram);
-    ram.write_word( cpu->pointers.PC - 1, cpu->pointers.SP, cycles);
+    ram.write_word( cycles, cpu->pointers.SP, cpu->pointers.PC - 1);
 
     cycles--;
     cpu->pointers.PC = sr_addr;
@@ -156,6 +157,30 @@ void Instructions::run_ldy_abx(CPU* cpu, RAM &ram, u32 cycles){
     cpu->registers.Y   = value;
     cpu->registers.Z   = SET_Y_ZERO_FLAG;
     cpu->registers.N   = SET_Y_NEGATIVE_FLAG;
+}
+
+
+void Instructions::run_sta(ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles){
+    Byte address = get_addressing_byte(addressing_mode_t, cpu, ram, cycles);
+    spdlog::info("Writting ACC to %i", address);
+    ram.write_byte(cycles, cpu->pointers.PC - 1, address);
+}
+
+
+void Instructions::run_stx(ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles){
+    Byte address = get_addressing_byte(addressing_mode_t, cpu, ram, cycles);
+    spdlog::info("Writting X to {}", address);
+
+    ram.write_byte(cycles, cpu->registers.X, address);
+    spdlog::info("Data on address(dec: {}): {} ", address, ram.data[address]);
+
+}
+
+
+void Instructions::run_sty(ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles){
+    Byte address = get_addressing_byte(addressing_mode_t, cpu, ram, cycles);
+    ram.write_byte(cycles, cpu->registers.Y, address);
+
 }
 
 

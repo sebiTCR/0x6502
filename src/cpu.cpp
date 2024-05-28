@@ -119,6 +119,28 @@ void CPU::execute(u32 cycles, RAM& mem){
                 break;   
             }
 
+            case OPCODE_STX_ABS:
+                instructions->run_stx(ADDR_MODE::AM_ABS, this, mem, cycles);
+                break;
+
+            case OPCODE_STX_ZP:
+                instructions->run_stx(ADDR_MODE::AM_ZP0, this, mem, cycles);
+                break;
+
+            case OPCODE_STX_ZPY:
+                instructions->run_stx(ADDR_MODE::AM_ZPY, this, mem, cycles);
+                break;
+
+            case OPCODE_STY_ABS:
+                instructions->run_sty(ADDR_MODE::AM_ABS, this, mem, cycles);
+
+            case OPCODE_STY_ZP:
+                instructions->run_sty(ADDR_MODE::AM_ZP0, this, mem, cycles);
+                break;
+
+            case OPCODE_STY_ZPX:
+                instructions->run_sty(ADDR_MODE::AM_ZPX, this, mem, cycles);
+                break;
 
             case OPCODE_INX:{
                 instructions->run_inx(this, mem, cycles);

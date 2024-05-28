@@ -184,6 +184,50 @@ void Instructions::run_sty(ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 
 }
 
 
+void Instructions::run_tax(CPU* cpu, RAM &ram, u32 cycles){
+    cpu->registers.X = cpu->registers.ACC;
+    cpu->registers.N = SET_X_NEGATIVE_FLAG;
+    cpu->registers.Z = SET_X_ZERO_FLAG;
+    cycles -= 2;
+}
+
+
+void Instructions::run_tay(CPU* cpu, RAM &ram, u32 cycles){
+    cpu->registers.Y = cpu->registers.ACC;
+    cpu->registers.N = SET_Y_NEGATIVE_FLAG;
+    cpu->registers.Z = SET_Y_ZERO_FLAG;
+    cycles -= 2;
+}
+
+
+void Instructions::run_tsx(CPU* cpu, RAM &ram, u32 cycles){
+    cpu->registers.X = cpu->gfetch(cycles, cpu->pointers.SP ,ram);
+    cpu->registers.N = SET_X_NEGATIVE_FLAG;
+    cpu->registers.Z = SET_X_ZERO_FLAG;
+    cycles -= 2;
+}
+
+
+void Instructions::run_txa(CPU* cpu, RAM &ram, u32 cycles){
+    cpu->registers.Y = cpu->registers.X;
+    cpu->registers.N = SET_Y_NEGATIVE_FLAG;
+    cpu->registers.Z = SET_Y_ZERO_FLAG;
+    cycles -= 2;
+}
+
+
+void Instructions::run_txs(CPU* cpu, RAM &ram, u32 cycles){
+    ram.write_byte(cycles, cpu->registers.X, cpu->pointers.SP );
+    cycles--;
+}
+
+
+void Instructions::run_tya(CPU* cpu, RAM &ram, u32 cycles){
+    ram.write_byte(cycles, cpu->registers.Y, cpu->pointers.SP );
+    cycles--;
+}
+
+
 //TBI
 void Instructions::run_jmp(CPU* cpu, RAM &ram, u32 cycles){
 

@@ -30,9 +30,9 @@ X# Instruction Support
     - [X] STX
     - [X] STY
   
-- [ ] Stack Operations
-    - [ ] TSX
-    - [ ] TXS
+- [-] Stack Operations
+    - [X] TSX
+    - [X] TXS
     - [ ] PHA
     - [ ] PHP
     - [ ] PLA
@@ -77,11 +77,11 @@ X# Instruction Support
   - [ ] NOP
   - [ ] RTI
 
-- [ ] Transfers
-  - [ ] TAX
-  - [ ] TAY
-  - [ ] TXA
-  - [ ] TYA
+- [X] Transfers
+  - [X] TAX
+  - [X] TAY
+  - [X] TXA
+  - [X] TYA
 
 - [-] Increments
     - [ ] INC

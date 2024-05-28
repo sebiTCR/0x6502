@@ -187,24 +187,23 @@ void CPU::execute(u32 cycles, RAM& mem){
                 break;
             }
 
-
             case OPCODE_TAX:
-                Instructions->run_tax(this, mem, cycles);
+                instructions->run_tax(this, mem, cycles);
                 break;
             case OPCODE_TAY:
-                Instructions->run_tay(this, mem, cycles);
+                instructions->run_tay(this, mem, cycles);
                 break;
             case OPCODE_TSX:
-                Instructions->run_tsx(this, mem, cycles);
+                instructions->run_tsx(this, mem, cycles);
                 break;
             case OPCODE_TXA:
-                Instructions->run_txa(this, mem, cycles);
+                instructions->run_txa(this, mem, cycles);
                 break;
             case OPCODE_TXS:
-                Instructions->run_txs(this, mem, cycles);
+                instructions->run_txs(this, mem, cycles);
                 break;    
             case OPCODE_TYA:
-                Instructions->run_tya(this, mem, cycles);
+                instructions->run_tya(this, mem, cycles);
                 break;            
 
             default:{

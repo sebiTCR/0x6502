@@ -25,6 +25,15 @@ static constexpr Byte OPCODE_LDY_ZPX = 0xB4;
 static constexpr Byte OPCODE_LDY_ABS = 0xAC;
 static constexpr Byte OPCODE_LDY_ABX = 0xBC;
 
+static constexpr Byte OPCODE_STX_ZP  = 0x86;
+static constexpr Byte OPCODE_STX_ZPY = 0x96;
+static constexpr Byte OPCODE_STX_ABS = 0x8E;
+
+static constexpr Byte OPCODE_STY_ZP  = 0x04;
+static constexpr Byte OPCODE_STY_ZPX = 0x94;
+static constexpr Byte OPCODE_STY_ABS = 0x8c;
+
+
 static constexpr Byte OPCODE_JSR     = 0x20;
 
 static constexpr Byte OPCODE_JMP_ABS = 0x4C;
@@ -46,6 +55,8 @@ class CPU; // Dummy
 
 class Instructions{
 public:
+
+    //TODO: Update to comply with the new addressing convetions
     void run_jsr     (CPU* cpu, RAM &ram, u32 cycles);
     void run_lda_im  (CPU* cpu, RAM &ram, u32 cycles);
     void run_lda_zpx (CPU* cpu, RAM &ram, u32 cycles);
@@ -56,6 +67,7 @@ public:
     void run_lda_inx (CPU* cpu, RAM &ram, u32 cycles);
     void run_lda_iny (CPU* cpu, RAM &ram, u32 cycles);
 
+    //TODO: Update to comply with the new addressing convetions
     void run_ldx_im  (CPU* cpu, RAM &ram, u32 cycles);
     void run_ldx_zp  (CPU* cpu, RAM &ram, u32 cycles);
     void run_ldx_zpy (CPU* cpu, RAM &ram, u32 cycles);
@@ -66,6 +78,11 @@ public:
     void run_ldy_zpx (CPU* cpu, RAM &ram, u32 cycles);
     void run_ldy_abs (CPU* cpu, RAM &ram, u32 cycles);
     void run_ldy_abx (CPU* cpu, RAM &ram, u32 cycles);
+
+    // Storings
+    void run_sta     (ADDR_MODE addressing_mode_t ,CPU* cpu, RAM &ram, u32 cycles);
+    void run_stx     (ADDR_MODE addressing_mode_t ,CPU* cpu, RAM &ram, u32 cycles);
+    void run_sty     (ADDR_MODE addressing_mode_t ,CPU* cpu, RAM &ram, u32 cycles);
 
     void run_jmp     (CPU* cpu, RAM &ram, u32 cycles);
 
@@ -79,6 +96,7 @@ public:
     void run_cld     (CPU* cpu, RAM &ram, u32 cycles);
     void run_cli     (CPU* cpu, RAM &ram, u32 cycles);
     void run_clv     (CPU* cpu, RAM &ram, u32 cycles);
+
 
 
 

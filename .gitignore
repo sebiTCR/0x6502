@@ -3,4 +3,5 @@ build/
 builddir/
 subprojects/**
 !subprojects/*.wrap
+imgui.ini.vscode/
 imgui.ini

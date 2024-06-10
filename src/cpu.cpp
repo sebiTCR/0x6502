@@ -206,6 +206,19 @@ void CPU::execute(u32 cycles, RAM& mem){
                 instructions->run_tya(this, mem, cycles);
                 break;            
 
+            case OPCODE_PHA:
+                instructions->run_pha(this, mem, cycles);
+                break;
+            case OPCODE_PHP:
+                instructions->run_php(this, mem, cycles);
+                break;
+            case OPCODE_PLA:
+                instructions->run_pla(this, mem, cycles);
+                break;
+            case OPCODE_PLP:
+                instructions->run_plp(this, mem, cycles);
+                break;
+
             default:{
                 if(ins == 0)
                     break;

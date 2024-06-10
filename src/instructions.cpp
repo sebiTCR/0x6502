@@ -228,6 +228,48 @@ void Instructions::run_tya(CPU* cpu, RAM &ram, u32 cycles){
 }
 
 
+void Instructions::run_pha(CPU* cpu, RAM &ram, u32 cycles){
+    ram.write_byte(cpu->registers.ACC, cycles, cpu->pointers.PC);
+    cpu->pointers.PC++;
+    cycles -= 2;
+}
+
+
+void Instructions::run_php(CPU* cpu, RAM &ram, u32 cycles){
+    Byte status = 0x0;
+    status |= (cpu->registers.C << 1);
+    status |= (cpu->registers.Z << 2);
+    status |= (cpu->registers.I << 3);
+    status |= (cpu->registers.D << 4);
+    status |= (cpu->registers.B << 5);
+    status |= (cpu->registers.V << 6);
+    status |= (cpu->registers.N << 7);
+
+    ram.write_byte(status, cycles, cpu->pointers.PC);
+    cpu->pointers.PC++;
+    cycles -= 2;
+}
+
+
+void Instructions::run_pla(CPU* cpu, RAM &ram, u32 cycles){
+    cpu->registers.ACC = ram[cpu->pointers.PC];
+    cpu->registers.Z = SET_ACC_NEGATIVE_FLAG;
+        cycles -= 4;
+}
+
+
+void Instructions::run_plp(CPU* cpu, RAM &ram, u32 cycles){
+    cpu->registers.C = ram[cpu->pointers.PC] & 0x10000000;
+    cpu->registers.Z = ram[cpu->pointers.PC] & 0x01000000;
+    cpu->registers.I = ram[cpu->pointers.PC] & 0x00100000;
+    cpu->registers.D = ram[cpu->pointers.PC] & 0x00010000;
+    cpu->registers.B = ram[cpu->pointers.PC] & 0x00001000;
+    cpu->registers.V = ram[cpu->pointers.PC] & 0x00000100;
+    cpu->registers.N = ram[cpu->pointers.PC] & 0x00000010;
+    cycles -= 4;
+}
+
+
 //TBI
 void Instructions::run_jmp(CPU* cpu, RAM &ram, u32 cycles){
 

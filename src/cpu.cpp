@@ -133,6 +133,7 @@ void CPU::execute(u32 cycles, RAM& mem){
 
             case OPCODE_STY_ABS:
                 instructions->run_sty(ADDR_MODE::AM_ABS, this, mem, cycles);
+                break;
 
             case OPCODE_STY_ZP:
                 instructions->run_sty(ADDR_MODE::AM_ZP0, this, mem, cycles);

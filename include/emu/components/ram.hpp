@@ -6,7 +6,7 @@ public:
     RAM();
     ~RAM() = default;
 
-    static constexpr u32 MAX_MEM = 1024 * 64;
+    static constexpr u32 MAX_MEM = ( 1024 * 64 ) * 2; // 128 KB of RAM + ROM
     Byte data[MAX_MEM];
 
     Byte operator[] ( u32 addr) const  { return data[addr]; }

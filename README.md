@@ -8,11 +8,10 @@
 
 ## Compiling & Running
 1. Make sure you have **meson** installed.
-2. The only dependency that you will need is **spdlog**. Aside from this, everything else will be downloaded by meson
-3. Clone the project alongside its submodules: ```$ git clone --recurse-submodules https://github.com/sebiTCR/0x6502```
-4. Configure the project using meson: ```meson build```
-5. Compile the project: ```meson compile -C build```
-6. Run the project: ```./build/basicemulator```
+2. Clone the project alongside its submodules: ```$ git clone --recurse-submodules https://github.com/sebiTCR/0x6502```
+3. Configure the project using meson: ```meson build```
+4. Compile the project: ```meson compile -C build```
+5. Run the project: ```./build/basicemulator```
 
 ## Disclaimer
 Since the GUI uses OpenGL, you might have issues running the emulator on MacOS. 

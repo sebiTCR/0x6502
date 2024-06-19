@@ -5,13 +5,14 @@ project('BasicEmulator', 'cpp',
 
 
 SOURCES = []
-INCDIR = [include_directories('include'), include_directories('external/imgui_club/imgui_memory_editor')]
+INCDIR = [include_directories('include')]
 DEPS = [
   dependency('spdlog'),
   dependency('glfw3'),
   dependency('imgui'),
 ]
 
+subdir('external')
 subdir('src')
 
 exe = executable('basicemulator', SOURCES, include_directories: INCDIR, dependencies: DEPS)

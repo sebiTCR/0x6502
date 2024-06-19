@@ -133,6 +133,7 @@ void CPU::execute(u32 cycles, RAM& mem){
 
             case OPCODE_STY_ABS:
                 instructions->run_sty(ADDR_MODE::AM_ABS, this, mem, cycles);
+                break;
 
             case OPCODE_STY_ZP:
                 instructions->run_sty(ADDR_MODE::AM_ZP0, this, mem, cycles);
@@ -205,6 +206,19 @@ void CPU::execute(u32 cycles, RAM& mem){
             case OPCODE_TYA:
                 instructions->run_tya(this, mem, cycles);
                 break;            
+
+            case OPCODE_PHA:
+                instructions->run_pha(this, mem, cycles);
+                break;
+            case OPCODE_PHP:
+                instructions->run_php(this, mem, cycles);
+                break;
+            case OPCODE_PLA:
+                instructions->run_pla(this, mem, cycles);
+                break;
+            case OPCODE_PLP:
+                instructions->run_plp(this, mem, cycles);
+                break;
 
             default:{
                 if(ins == 0)

@@ -18,6 +18,10 @@ Byte ZP0(CPU* cpu_t, RAM ram_t,  u32 cycles_t){
     return addr;
 }
 
+Byte IM (CPU* cpu_t, RAM ram_t,  u32 cycles_t){
+    return cpu_t->fetch(cycles_t, ram_t);
+}
+
 
 Byte ZPX(CPU* cpu_t, RAM ram_t,  u32 cycles_t){
     Byte addr = cpu_t->fetch(cycles_t, ram_t);

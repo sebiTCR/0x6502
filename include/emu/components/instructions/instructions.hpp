@@ -80,6 +80,15 @@ static constexpr Byte OPCODE_EOR_ABY = 0x59;
 static constexpr Byte OPCODE_EOR_INX = 0x41;
 static constexpr Byte OPCODE_EOR_INY = 0x51;
 
+static constexpr Byte OPCODE_ORA_IM  = 0x09;
+static constexpr Byte OPCODE_ORA_ZP  = 0x05;
+static constexpr Byte OPCODE_ORA_ZPX = 0x15;
+static constexpr Byte OPCODE_ORA_ABS = 0x0D;
+static constexpr Byte OPCODE_ORA_ABX = 0x1D;
+static constexpr Byte OPCODE_ORA_ABY = 0x19;
+static constexpr Byte OPCODE_ORA_INX = 0x01;
+static constexpr Byte OPCODE_ORA_INY = 0x11;
+
 class CPU; // Dummy
 
 class Instructions{
@@ -115,6 +124,7 @@ public:
 
     void run_and     (ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles);
     void run_eor     (ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles);
+    void run_ora     (ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles);
 
     void run_jmp     (CPU* cpu, RAM &ram, u32 cycles);
 

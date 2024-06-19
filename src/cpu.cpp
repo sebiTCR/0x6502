@@ -200,6 +200,39 @@ void CPU::execute(u32 cycles, RAM& mem){
                 instructions->run_eor(ADDR_MODE::AM_INY, this, mem, cycles);
                 break;
 
+            case OPCODE_ORA_IM:
+                instructions->run_ora(ADDR_MODE::AM_IM, this, mem, cycles);
+                break; 
+
+            case OPCODE_ORA_ZP:
+                instructions->run_ora(ADDR_MODE::AM_ZP0, this, mem, cycles);
+                break; 
+
+            case OPCODE_ORA_ZPX:
+                instructions->run_ora(ADDR_MODE::AM_ZPX, this, mem, cycles);
+                break;
+
+            case OPCODE_ORA_ABS:
+                instructions->run_ora(ADDR_MODE::AM_ABS, this, mem, cycles);
+                break;
+
+            case OPCODE_ORA_ABX:
+                instructions->run_ora(ADDR_MODE::AM_ABX, this, mem, cycles);
+                break;
+
+            case OPCODE_ORA_ABY:
+                instructions->run_ora(ADDR_MODE::AM_ABY, this, mem, cycles);
+                break;
+
+            case OPCODE_ORA_INX:
+                instructions->run_ora(ADDR_MODE::AM_INX, this, mem, cycles);
+                break;
+
+            case OPCODE_ORA_INY:
+                instructions->run_ora(ADDR_MODE::AM_INY, this, mem, cycles);
+                break;                
+
+
             case OPCODE_INX:{
                 instructions->run_inx(this, mem, cycles);
                 break;

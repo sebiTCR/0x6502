@@ -41,7 +41,7 @@ X# Instruction Support
 - [-] Logical operators
   - [X] AND
   - [X] EOR
-  - [ ] ORA
+  - [X] ORA
   - [ ] BIT
 
 - [ ] Arithmetic operations

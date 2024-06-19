@@ -57,6 +57,10 @@ static constexpr Byte OPCODE_TXA     = 0x8A;
 static constexpr Byte OPCODE_TXS     = 0x9A;
 static constexpr Byte OPCODE_TYA     = 0x98;
 
+static constexpr Byte OPCODE_PHA     = 0x48;
+static constexpr Byte OPCODE_PHP     = 0x08;
+static constexpr Byte OPCODE_PLA     = 0x68;
+static constexpr Byte OPCODE_PLP     = 0x28;
 
 class CPU; // Dummy
 
@@ -111,8 +115,9 @@ public:
     void run_txs     (CPU* cpu, RAM &ram, u32 cycles);
     void run_tya     (CPU* cpu, RAM &ram, u32 cycles);
 
-
-
-
+    void run_pha     (CPU* cpu, RAM &ram, u32 cycles);
+    void run_php     (CPU* cpu, RAM &ram, u32 cycles);
+    void run_pla     (CPU* cpu, RAM &ram, u32 cycles);
+    void run_plp     (CPU* cpu, RAM &ram, u32 cycles);
 
 };

@@ -23,6 +23,6 @@ public:
     void load_rom(RAM &ram);
 
 private:
-    Byte m_data[1024];
+    std::vector<Byte> m_data;
 };
 

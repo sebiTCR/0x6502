@@ -209,7 +209,7 @@ void Instructions::run_tsx(CPU* cpu, RAM &ram, u32 cycles){
 
 
 void Instructions::run_txa(CPU* cpu, RAM &ram, u32 cycles){
-    cpu->registers.Y = cpu->registers.X;
+    cpu->registers.ACC = cpu->registers.X;
     cpu->registers.N = SET_Y_NEGATIVE_FLAG;
     cpu->registers.Z = SET_Y_ZERO_FLAG;
     cycles -= 2;
@@ -225,6 +225,75 @@ void Instructions::run_txs(CPU* cpu, RAM &ram, u32 cycles){
 void Instructions::run_tya(CPU* cpu, RAM &ram, u32 cycles){
     ram.write_byte(cycles, cpu->registers.Y, cpu->pointers.SP );
     cycles--;
+}
+
+
+void Instructions::run_pha(CPU* cpu, RAM &ram, u32 cycles){
+    ram.write_byte(cpu->registers.ACC, cycles, cpu->pointers.SP);
+    cpu->pointers.PC++;
+    cpu->pointers.SP++;
+    cycles -= 2;
+}
+
+
+void Instructions::run_php(CPU* cpu, RAM &ram, u32 cycles){
+    Byte status = 0x0;
+
+    // status = (status << 1 ) | (cpu->registers.C & 0b1000000);
+    // status = (status << 1 ) | (cpu->registers.Z & 0b0100000);
+    // status = (status << 1 ) | (cpu->registers.I & 0b0010000);
+    // status = (status << 1 ) | (cpu->registers.D & 0b0001000);
+    // status = (status << 1 ) | (cpu->registers.B & 0b0000100);
+    // status = (status << 1 ) | (cpu->registers.V & 0b0000010);
+    // status = (status << 1 ) | (cpu->registers.N & 0b0000001);
+
+    status |= cpu->registers.C & 0b10000000;
+    status |= cpu->registers.Z & 0b01000000;
+    status |= cpu->registers.I & 0b00100000;
+    status |= cpu->registers.D & 0b00010000;
+    status |= cpu->registers.B & 0b00001000;
+    status |= cpu->registers.V & 0b00000100;
+    status |= cpu->registers.N & 0b00000010;
+
+    ram.write_byte(status, cycles, cpu->pointers.SP);
+    cpu->pointers.PC++;
+    cycles -= 2;
+}
+
+
+void Instructions::run_pla(CPU* cpu, RAM &ram, u32 cycles){
+    cpu->registers.ACC = ram[cpu->pointers.PC];
+    cpu->registers.Z = SET_ACC_NEGATIVE_FLAG;
+    cycles -= 4;
+}
+
+
+void Instructions::run_plp(CPU* cpu, RAM &ram, u32 cycles){
+    Byte stats = 0x0;
+    Byte stack_byte = ram[cpu->pointers.SP];
+
+    cpu->registers.C = (stack_byte & 0b10000000) >> 7;
+    cpu->registers.Z = (stack_byte & 0b01000000) >> 6;
+    cpu->registers.I = (stack_byte & 0b00100000) >> 5;
+    cpu->registers.D = (stack_byte & 0b00010000) >> 4;
+    cpu->registers.B = (stack_byte & 0b00001000) >> 3;
+    cpu->registers.V = (stack_byte & 0b00000100) >> 2;
+    cpu->registers.N = (stack_byte & 0b00000010) >> 1;
+
+
+
+    // stats |= stack_byte & 0b10000000;
+    // stats |= stack_byte & 0b01000000;
+    // stats |= stack_byte & 0b00100000;
+    // stats |= stack_byte & 0b00010000;
+    // stats |= stack_byte & 0b00001000;
+    // stats |= stack_byte & 0b00000100;
+    // stats |= stack_byte & 0b00000010;
+
+    printf("Stats Byte: %b \n", stats);
+
+
+    cycles -= 4;
 }
 
 

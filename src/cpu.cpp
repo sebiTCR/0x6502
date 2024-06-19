@@ -232,6 +232,12 @@ void CPU::execute(u32 cycles, RAM& mem){
                 instructions->run_ora(ADDR_MODE::AM_INY, this, mem, cycles);
                 break;                
 
+            case OPCODE_BIT_ZP:
+                instructions->run_bit(ADDR_MODE::AM_ZP0, this, mem, cycles);
+                break;
+            case OPCODE_BIT_ABS:
+                instructions->run_bit(ADDR_MODE::AM_ABS, this, mem, cycles);
+                break;        
 
             case OPCODE_INX:{
                 instructions->run_inx(this, mem, cycles);

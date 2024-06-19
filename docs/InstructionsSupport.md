@@ -38,11 +38,11 @@ X# Instruction Support
     - [X] PLA
     - [X] PLP
 
-- [-] Logical operators
+- [X] Logical operators
   - [X] AND
   - [X] EOR
   - [X] ORA
-  - [ ] BIT
+  - [X] BIT
 
 - [ ] Arithmetic operations
   - [ ] ADC

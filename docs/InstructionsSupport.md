@@ -33,10 +33,10 @@ X# Instruction Support
 - [-] Stack Operations
     - [X] TSX
     - [X] TXS
-    - [ ] PHA
-    - [ ] PHP
-    - [ ] PLA
-    - [ ] PLP
+    - [X] PHA
+    - [X] PHP
+    - [X] PLA
+    - [X] PLP
 
 - [ ] Logical operators
   - [ ] AND

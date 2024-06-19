@@ -175,6 +175,31 @@ void CPU::execute(u32 cycles, RAM& mem){
                 instructions->run_and(ADDR_MODE::AM_INY, this, mem, cycles);
                 break;
 
+            case OPCODE_EOR_IM:
+                instructions->run_eor(ADDR_MODE::AM_IM, this, mem, cycles);
+                break;
+            case OPCODE_EOR_ZP:
+                instructions->run_eor(ADDR_MODE::AM_ZP0, this, mem, cycles);
+                break;
+            case OPCODE_EOR_ZPX:
+                instructions->run_eor(ADDR_MODE::AM_ZPX, this, mem, cycles);
+                break;
+            case OPCODE_EOR_ABS:
+                instructions->run_eor(ADDR_MODE::AM_ABS, this, mem, cycles);
+                break;
+            case OPCODE_EOR_ABX:
+                instructions->run_eor(ADDR_MODE::AM_ABX, this, mem, cycles);
+                break;
+            case OPCODE_EOR_ABY:
+                instructions->run_eor(ADDR_MODE::AM_ABY, this, mem, cycles);
+                break;
+            case OPCODE_EOR_INX:
+                instructions->run_eor(ADDR_MODE::AM_INX, this, mem, cycles);
+                break;
+            case OPCODE_EOR_INY:
+                instructions->run_eor(ADDR_MODE::AM_INY, this, mem, cycles);
+                break;
+
             case OPCODE_INX:{
                 instructions->run_inx(this, mem, cycles);
                 break;

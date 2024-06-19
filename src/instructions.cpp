@@ -286,6 +286,13 @@ void Instructions::run_and(ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 
 }
 
 
+void run_eor(ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles){
+    Byte value = get_addressing_byte(addressing_mode_t, cpu, ram, cycles);
+    cpu->registers.ACC ^= value;
+    //TODO: Add cycle
+}
+
+
 //TBI
 void Instructions::run_jmp(CPU* cpu, RAM &ram, u32 cycles){
 

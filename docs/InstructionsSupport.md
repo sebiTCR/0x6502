@@ -38,9 +38,9 @@ X# Instruction Support
     - [X] PLA
     - [X] PLP
 
-- [ ] Logical operators
-  - [ ] AND
-  - [ ] EOR
+- [-] Logical operators
+  - [X] AND
+  - [X] EOR
   - [ ] ORA
   - [ ] BIT
 

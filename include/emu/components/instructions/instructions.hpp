@@ -71,6 +71,15 @@ static constexpr Byte OPCODE_AND_ABY = 0x39;
 static constexpr Byte OPCODE_AND_INX = 0x21;
 static constexpr Byte OPCODE_AND_INY = 0x31;
 
+static constexpr Byte OPCODE_EOR_IM  = 0x49;
+static constexpr Byte OPCODE_EOR_ZP  = 0x45;
+static constexpr Byte OPCODE_EOR_ZPX = 0x55;
+static constexpr Byte OPCODE_EOR_ABS = 0x4D;
+static constexpr Byte OPCODE_EOR_ABX = 0x5D;
+static constexpr Byte OPCODE_EOR_ABY = 0x59;
+static constexpr Byte OPCODE_EOR_INX = 0x41;
+static constexpr Byte OPCODE_EOR_INY = 0x51;
+
 class CPU; // Dummy
 
 class Instructions{
@@ -105,6 +114,7 @@ public:
     void run_sty     (ADDR_MODE addressing_mode_t ,CPU* cpu, RAM &ram, u32 cycles);
 
     void run_and     (ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles);
+    void run_eor     (ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles);
 
     void run_jmp     (CPU* cpu, RAM &ram, u32 cycles);
 

@@ -62,6 +62,15 @@ static constexpr Byte OPCODE_PHP     = 0x08;
 static constexpr Byte OPCODE_PLA     = 0x68;
 static constexpr Byte OPCODE_PLP     = 0x28;
 
+static constexpr Byte OPCODE_AND_IM  = 0x29;
+static constexpr Byte OPCODE_AND_ZP  = 0x25;
+static constexpr Byte OPCODE_AND_ZPX = 0x35;
+static constexpr Byte OPCODE_AND_ABS = 0x2D;
+static constexpr Byte OPCODE_AND_ABX = 0x3D;
+static constexpr Byte OPCODE_AND_ABY = 0x39;
+static constexpr Byte OPCODE_AND_INX = 0x21;
+static constexpr Byte OPCODE_AND_INY = 0x31;
+
 class CPU; // Dummy
 
 class Instructions{
@@ -94,6 +103,8 @@ public:
     void run_sta     (ADDR_MODE addressing_mode_t ,CPU* cpu, RAM &ram, u32 cycles);
     void run_stx     (ADDR_MODE addressing_mode_t ,CPU* cpu, RAM &ram, u32 cycles);
     void run_sty     (ADDR_MODE addressing_mode_t ,CPU* cpu, RAM &ram, u32 cycles);
+
+    void run_and     (ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles);
 
     void run_jmp     (CPU* cpu, RAM &ram, u32 cycles);
 

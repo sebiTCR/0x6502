@@ -7,7 +7,7 @@ CPU::CPU(){
 
 
 void CPU::reset(RAM& ram){
-    pointers.PC = 0xFFFC;
+    pointers.PC = 0x0FFFC;
     pointers.SP = 0x01;
 
     registers.ACC = 0x0;
@@ -141,6 +141,38 @@ void CPU::execute(u32 cycles, RAM& mem){
 
             case OPCODE_STY_ZPX:
                 instructions->run_sty(ADDR_MODE::AM_ZPX, this, mem, cycles);
+                break;
+
+            case OPCODE_AND_IM:
+                instructions->run_and(ADDR_MODE::AM_IM, this, mem, cycles);
+                break;
+    
+            case OPCODE_AND_ZP:
+                instructions->run_and(ADDR_MODE::AM_ZP0, this, mem, cycles);
+                break;
+
+            case OPCODE_AND_ZPX:
+                instructions->run_and(ADDR_MODE::AM_ZPX, this, mem, cycles);
+                break;
+
+            case OPCODE_AND_ABS:
+                instructions->run_and(ADDR_MODE::AM_ABS, this, mem, cycles);
+                break;
+
+            case OPCODE_AND_ABX:
+                instructions->run_and(ADDR_MODE::AM_ABX, this, mem, cycles);
+                break;
+
+            case OPCODE_AND_ABY:
+                instructions->run_and(ADDR_MODE::AM_ABY, this, mem, cycles);
+                break;
+
+            case OPCODE_AND_INX:
+                instructions->run_and(ADDR_MODE::AM_INX, this, mem, cycles);
+                break;
+
+            case OPCODE_AND_INY:
+                instructions->run_and(ADDR_MODE::AM_INY, this, mem, cycles);
                 break;
 
             case OPCODE_INX:{

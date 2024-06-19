@@ -5,6 +5,7 @@ using Word = unsigned short;
 using u32 = unsigned int;
 
 enum ADDR_MODE{
+    AM_IM,
     AM_ABS,
     AM_ABX,
     AM_ABY,

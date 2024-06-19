@@ -239,14 +239,6 @@ void Instructions::run_pha(CPU* cpu, RAM &ram, u32 cycles){
 void Instructions::run_php(CPU* cpu, RAM &ram, u32 cycles){
     Byte status = 0x0;
 
-    // status = (status << 1 ) | (cpu->registers.C & 0b1000000);
-    // status = (status << 1 ) | (cpu->registers.Z & 0b0100000);
-    // status = (status << 1 ) | (cpu->registers.I & 0b0010000);
-    // status = (status << 1 ) | (cpu->registers.D & 0b0001000);
-    // status = (status << 1 ) | (cpu->registers.B & 0b0000100);
-    // status = (status << 1 ) | (cpu->registers.V & 0b0000010);
-    // status = (status << 1 ) | (cpu->registers.N & 0b0000001);
-
     status |= cpu->registers.C & 0b10000000;
     status |= cpu->registers.Z & 0b01000000;
     status |= cpu->registers.I & 0b00100000;
@@ -280,20 +272,17 @@ void Instructions::run_plp(CPU* cpu, RAM &ram, u32 cycles){
     cpu->registers.V = (stack_byte & 0b00000100) >> 2;
     cpu->registers.N = (stack_byte & 0b00000010) >> 1;
 
-
-
-    // stats |= stack_byte & 0b10000000;
-    // stats |= stack_byte & 0b01000000;
-    // stats |= stack_byte & 0b00100000;
-    // stats |= stack_byte & 0b00010000;
-    // stats |= stack_byte & 0b00001000;
-    // stats |= stack_byte & 0b00000100;
-    // stats |= stack_byte & 0b00000010;
-
-    printf("Stats Byte: %b \n", stats);
-
-
     cycles -= 4;
+}
+
+
+void Instructions::run_and(ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles){
+    Byte value = get_addressing_byte(addressing_mode_t, cpu, ram, cycles);
+
+    cpu->registers.ACC = cpu->registers.ACC & value;
+
+    cpu->registers.Z = SET_ACC_ZERO_FLAG;
+    cpu->registers.N = SET_ACC_NEGATIVE_FLAG;
 }
 
 

@@ -107,6 +107,15 @@ static constexpr Byte OPCODE_SBC_ABY = 0xF9;
 static constexpr Byte OPCODE_SBC_INX = 0xE1;
 static constexpr Byte OPCODE_SBC_INY = 0xF1;
 
+static constexpr Byte OPCODE_CMP_IM  = 0xC9;
+static constexpr Byte OPCODE_CMP_ZP  = 0xC5;
+static constexpr Byte OPCODE_CMP_ZPX = 0xD5;
+static constexpr Byte OPCODE_CMP_ABS = 0xCD;
+static constexpr Byte OPCODE_CMP_ABX = 0xDD;
+static constexpr Byte OPCODE_CMP_ABY = 0xD9;
+static constexpr Byte OPCODE_CMP_INX = 0xC1;
+static constexpr Byte OPCODE_CMP_INY = 0xD1;
+
 static constexpr Byte OPCODE_BIT_ZP  = 0x24;
 static constexpr Byte OPCODE_BIT_ABS = 0x2C;
 
@@ -151,6 +160,7 @@ public:
 
     void run_adc     (ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles);
     void run_sbc     (ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles);
+    void run_cmp     (ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles);
 
     void run_jmp     (CPU* cpu, RAM &ram, u32 cycles);
 

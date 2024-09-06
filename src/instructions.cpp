@@ -328,8 +328,19 @@ void Instructions::run_sbc(ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 
 
     cpu->registers.C = (dif > 0xFF);
     cpu->registers.Z = SET_ACC_NEGATIVE_FLAG;
-
 }
+
+
+void Instructions::run_cmp(ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles){
+    Byte data = get_addressing_byte(addressing_mode_t, cpu, ram, cycles);
+    if(cpu->registers.ACC == data)
+        cpu->registers.Z = 1;
+    if(cpu->registers.ACC >= data)
+        cpu->registers.C = 1;
+
+    cpu->registers.N = SET_ACC_NEGATIVE_FLAG 
+}
+
 
 
 //TBI

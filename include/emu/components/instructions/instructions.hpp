@@ -89,6 +89,24 @@ static constexpr Byte OPCODE_ORA_ABY = 0x19;
 static constexpr Byte OPCODE_ORA_INX = 0x01;
 static constexpr Byte OPCODE_ORA_INY = 0x11;
 
+static constexpr Byte OPCODE_ADC_IM  = 0x69;
+static constexpr Byte OPCODE_ADC_ZP  = 0x65;
+static constexpr Byte OPCODE_ADC_ZPX = 0x75;
+static constexpr Byte OPCODE_ADC_ABS = 0x6D;
+static constexpr Byte OPCODE_ADC_ABX = 0x7D;
+static constexpr Byte OPCODE_ADC_ABY = 0x79;
+static constexpr Byte OPCODE_ADC_INX = 0x61;
+static constexpr Byte OPCODE_ADC_INY = 0x71;
+
+static constexpr Byte OPCODE_SBC_IM  = 0xE9;
+static constexpr Byte OPCODE_SBC_ZP  = 0xE5;
+static constexpr Byte OPCODE_SBC_ZPX = 0xF5;
+static constexpr Byte OPCODE_SBC_ABS = 0xED;
+static constexpr Byte OPCODE_SBC_ABX = 0xFD;
+static constexpr Byte OPCODE_SBC_ABY = 0xF9;
+static constexpr Byte OPCODE_SBC_INX = 0xE1;
+static constexpr Byte OPCODE_SBC_INY = 0xF1;
+
 static constexpr Byte OPCODE_BIT_ZP  = 0x24;
 static constexpr Byte OPCODE_BIT_ABS = 0x2C;
 
@@ -130,6 +148,9 @@ public:
     void run_eor     (ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles);
     void run_ora     (ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles);
     void run_bit     (ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles);
+
+    void run_adc     (ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles);
+    void run_sbc     (ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles);
 
     void run_jmp     (CPU* cpu, RAM &ram, u32 cycles);
 

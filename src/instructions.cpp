@@ -302,8 +302,33 @@ void Instructions::run_ora(ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 
 
 void Instructions::run_bit(ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles){
     Byte value = get_addressing_byte(addressing_mode_t, cpu, ram, cycles);
-    cpu->registers.ACC ^= value;
+    //TODO: IMplement bit
     //TODO: Add cycle
+}
+
+
+void Instructions::run_adc(ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles){
+    Byte data = get_addressing_byte(addressing_mode_t, cpu, ram, cycles);
+    Word sum = cpu->registers.ACC;
+    sum += data;
+    sum += cpu->registers.C;
+    cpu->registers.ACC = sum;
+
+    cpu->registers.C = (sum > 0xFF);
+    cpu->registers.Z = SET_ACC_NEGATIVE_FLAG;
+}
+
+
+void Instructions::run_sbc(ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles){
+    Byte data = get_addressing_byte(addressing_mode_t, cpu, ram, cycles);
+    Word dif = cpu->registers.ACC;
+    dif -= data;
+    dif -= (1 - cpu->registers.C);
+    cpu->registers.ACC = dif;
+
+    cpu->registers.C = (dif > 0xFF);
+    cpu->registers.Z = SET_ACC_NEGATIVE_FLAG;
+
 }
 
 

@@ -237,7 +237,73 @@ void CPU::execute(u32 cycles, RAM& mem){
                 break;
             case OPCODE_BIT_ABS:
                 instructions->run_bit(ADDR_MODE::AM_ABS, this, mem, cycles);
-                break;        
+                break;
+
+            case OPCODE_ADC_IM:
+                instructions->run_adc(ADDR_MODE::AM_IM, this, mem, cycles);
+                break;
+
+            case OPCODE_ADC_ZP:
+                instructions->run_adc(ADDR_MODE::AM_ZP0, this, mem, cycles);
+                break;
+
+            case OPCODE_ADC_ZPX:
+                instructions->run_adc(ADDR_MODE::AM_ZPX, this, mem, cycles);
+                break;
+
+            case OPCODE_ADC_ABS:
+                instructions->run_adc(ADDR_MODE::AM_ABS, this, mem, cycles);
+                break;
+
+            case OPCODE_ADC_ABX:
+                instructions->run_adc(ADDR_MODE::AM_ABX, this, mem, cycles);
+                break;
+
+            case OPCODE_ADC_ABY:
+                instructions->run_adc(ADDR_MODE::AM_ABY, this, mem, cycles);
+                break;
+
+            case OPCODE_ADC_INX:
+                instructions->run_adc(ADDR_MODE::AM_INX, this, mem, cycles);
+                break;
+
+            case OPCODE_ADC_INY:
+                instructions->run_adc(ADDR_MODE::AM_INY, this, mem, cycles);
+                break;
+
+            case OPCODE_SBC_IM:
+                instructions->run_sbc(ADDR_MODE::AM_IM, this, mem, cycles);
+                break;
+
+            case OPCODE_SBC_ZP:
+                instructions->run_sbc(ADDR_MODE::AM_ZP0, this, mem, cycles);
+                break;
+
+            case OPCODE_SBC_ZPX:
+                instructions->run_sbc(ADDR_MODE::AM_ZPX, this, mem, cycles);
+                break;
+
+            case OPCODE_SBC_ABS:
+                instructions->run_sbc(ADDR_MODE::AM_ABS, this, mem, cycles);
+                break;
+
+            case OPCODE_SBC_ABX:
+                instructions->run_sbc(ADDR_MODE::AM_ABX, this, mem, cycles);
+                break;
+
+            case OPCODE_SBC_ABY:
+                instructions->run_sbc(ADDR_MODE::AM_ABY, this, mem, cycles);
+                break;
+
+            case OPCODE_SBC_INX:
+                instructions->run_sbc(ADDR_MODE::AM_INX, this, mem, cycles);
+                break;
+
+            case OPCODE_SBC_INY:
+                instructions->run_sbc(ADDR_MODE::AM_INY, this, mem, cycles);
+                break;
+
+                
 
             case OPCODE_INX:{
                 instructions->run_inx(this, mem, cycles);

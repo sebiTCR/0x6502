@@ -30,7 +30,7 @@ X# Instruction Support
     - [X] STX
     - [X] STY
   
-- [-] Stack Operations
+- [X] Stack Operations
     - [X] TSX
     - [X] TXS
     - [X] PHA
@@ -44,9 +44,9 @@ X# Instruction Support
   - [X] ORA
   - [X] BIT
 
-- [ ] Arithmetic operations
-  - [ ] ADC
-  - [ ] SBC
+- [-] Arithmetic operations
+  - [X] ADC
+  - [X] SBC
   - [ ] CMP
   - [ ] CPX
   - [ ] CPY

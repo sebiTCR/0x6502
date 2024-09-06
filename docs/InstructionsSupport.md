@@ -44,12 +44,12 @@ X# Instruction Support
   - [X] ORA
   - [X] BIT
 
-- [-] Arithmetic operations
+- [X] Arithmetic operations
   - [X] ADC
   - [X] SBC
-  - [ ] CMP
-  - [ ] CPX
-  - [ ] CPY
+  - [X] CMP
+  - [X] CPX
+  - [X] CPY
 
 - [ ] Shifts
   - [ ] ASL

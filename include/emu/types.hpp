@@ -1,7 +1,8 @@
 #pragma once
+#include <stdint.h>
 
-using Byte = unsigned char;
-using Word = unsigned short;
+using Byte = uint8_t;
+using Word = uint16_t;
 using u32 = unsigned int;
 
 enum ADDR_MODE{

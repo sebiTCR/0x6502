@@ -334,7 +334,31 @@ void CPU::execute(u32 cycles, RAM& mem){
             case OPCODE_CMP_INY:
                 instructions->run_cmp(ADDR_MODE::AM_INY, this, mem, cycles);
                 break;
-                
+
+            case OPCODE_CPX_IM:
+                instructions->run_cpx(ADDR_MODE::AM_IM, this, mem, cycles);
+                break;           
+            
+            case OPCODE_CPX_ZP:
+                instructions->run_cpx(ADDR_MODE::AM_ZP0, this, mem, cycles);
+                break;
+            
+            case OPCODE_CPX_ABS:
+                instructions->run_cpx(ADDR_MODE::AM_ABS, this, mem, cycles);
+                break;
+
+            case OPCODE_CPY_IM:
+                instructions->run_cpy(ADDR_MODE::AM_IM, this, mem, cycles);
+                break;           
+            
+            case OPCODE_CPY_ZP:
+                instructions->run_cpy(ADDR_MODE::AM_ZP0, this, mem, cycles);
+                break;
+            
+            case OPCODE_CPY_ABS:
+                instructions->run_cpy(ADDR_MODE::AM_ABS, this, mem, cycles);
+                break;
+
 
             case OPCODE_INX:{
                 instructions->run_inx(this, mem, cycles);

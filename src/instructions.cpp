@@ -342,6 +342,27 @@ void Instructions::run_cmp(ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 
 }
 
 
+void Instructions::run_cpx(ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles){
+    Byte data = get_addressing_byte(addressing_mode_t, cpu, ram, cycles);
+    if(cpu->registers.X == data)
+        cpu->registers.Z = 1;
+    if(cpu->registers.X >= data)
+        cpu->registers.C = 1;
+
+    cpu->registers.N = SET_X_NEGATIVE_FLAG 
+}
+
+
+void Instructions::run_cpy(ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles){
+    Byte data = get_addressing_byte(addressing_mode_t, cpu, ram, cycles);
+    if(cpu->registers.Y == data)
+        cpu->registers.Z = 1;
+    if(cpu->registers.Y >= data)
+        cpu->registers.C = 1;
+
+    cpu->registers.N = SET_Y_NEGATIVE_FLAG 
+}
+
 
 //TBI
 void Instructions::run_jmp(CPU* cpu, RAM &ram, u32 cycles){

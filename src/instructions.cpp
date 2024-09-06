@@ -239,14 +239,6 @@ void Instructions::run_pha(CPU* cpu, RAM &ram, u32 cycles){
 void Instructions::run_php(CPU* cpu, RAM &ram, u32 cycles){
     Byte status = 0x0;
 
-    // status = (status << 1 ) | (cpu->registers.C & 0b1000000);
-    // status = (status << 1 ) | (cpu->registers.Z & 0b0100000);
-    // status = (status << 1 ) | (cpu->registers.I & 0b0010000);
-    // status = (status << 1 ) | (cpu->registers.D & 0b0001000);
-    // status = (status << 1 ) | (cpu->registers.B & 0b0000100);
-    // status = (status << 1 ) | (cpu->registers.V & 0b0000010);
-    // status = (status << 1 ) | (cpu->registers.N & 0b0000001);
-
     status |= cpu->registers.C & 0b10000000;
     status |= cpu->registers.Z & 0b01000000;
     status |= cpu->registers.I & 0b00100000;
@@ -280,20 +272,95 @@ void Instructions::run_plp(CPU* cpu, RAM &ram, u32 cycles){
     cpu->registers.V = (stack_byte & 0b00000100) >> 2;
     cpu->registers.N = (stack_byte & 0b00000010) >> 1;
 
-
-
-    // stats |= stack_byte & 0b10000000;
-    // stats |= stack_byte & 0b01000000;
-    // stats |= stack_byte & 0b00100000;
-    // stats |= stack_byte & 0b00010000;
-    // stats |= stack_byte & 0b00001000;
-    // stats |= stack_byte & 0b00000100;
-    // stats |= stack_byte & 0b00000010;
-
-    printf("Stats Byte: %b \n", stats);
-
-
     cycles -= 4;
+}
+
+
+void Instructions::run_and(ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles){
+    Byte value = get_addressing_byte(addressing_mode_t, cpu, ram, cycles);
+
+    cpu->registers.ACC = cpu->registers.ACC & value;
+
+    cpu->registers.Z = SET_ACC_ZERO_FLAG;
+    cpu->registers.N = SET_ACC_NEGATIVE_FLAG;
+}
+
+
+void Instructions::run_eor(ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles){
+    Byte value = get_addressing_byte(addressing_mode_t, cpu, ram, cycles);
+    cpu->registers.ACC |= value;
+    //TODO: Add cycle
+}
+
+
+void Instructions::run_ora(ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles){
+    Byte value = get_addressing_byte(addressing_mode_t, cpu, ram, cycles);
+    cpu->registers.ACC ^= value;
+    //TODO: Add cycle
+}
+
+
+void Instructions::run_bit(ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles){
+    Byte value = get_addressing_byte(addressing_mode_t, cpu, ram, cycles);
+    //TODO: IMplement bit
+    //TODO: Add cycle
+}
+
+
+void Instructions::run_adc(ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles){
+    Byte data = get_addressing_byte(addressing_mode_t, cpu, ram, cycles);
+    Word sum = cpu->registers.ACC;
+    sum += data;
+    sum += cpu->registers.C;
+    cpu->registers.ACC = sum;
+
+    cpu->registers.C = (sum > 0xFF);
+    cpu->registers.Z = SET_ACC_NEGATIVE_FLAG;
+}
+
+
+void Instructions::run_sbc(ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles){
+    Byte data = get_addressing_byte(addressing_mode_t, cpu, ram, cycles);
+    Word dif = cpu->registers.ACC;
+    dif -= data;
+    dif -= (1 - cpu->registers.C);
+    cpu->registers.ACC = dif;
+
+    cpu->registers.C = (dif > 0xFF);
+    cpu->registers.Z = SET_ACC_NEGATIVE_FLAG;
+}
+
+
+void Instructions::run_cmp(ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles){
+    Byte data = get_addressing_byte(addressing_mode_t, cpu, ram, cycles);
+    if(cpu->registers.ACC == data)
+        cpu->registers.Z = 1;
+    if(cpu->registers.ACC >= data)
+        cpu->registers.C = 1;
+
+    cpu->registers.N = SET_ACC_NEGATIVE_FLAG 
+}
+
+
+void Instructions::run_cpx(ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles){
+    Byte data = get_addressing_byte(addressing_mode_t, cpu, ram, cycles);
+    if(cpu->registers.X == data)
+        cpu->registers.Z = 1;
+    if(cpu->registers.X >= data)
+        cpu->registers.C = 1;
+
+    cpu->registers.N = SET_X_NEGATIVE_FLAG 
+}
+
+
+void Instructions::run_cpy(ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles){
+    Byte data = get_addressing_byte(addressing_mode_t, cpu, ram, cycles);
+    if(cpu->registers.Y == data)
+        cpu->registers.Z = 1;
+    if(cpu->registers.Y >= data)
+        cpu->registers.C = 1;
+
+    cpu->registers.N = SET_Y_NEGATIVE_FLAG 
 }
 
 

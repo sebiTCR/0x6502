@@ -30,7 +30,7 @@ X# Instruction Support
     - [X] STX
     - [X] STY
   
-- [-] Stack Operations
+- [X] Stack Operations
     - [X] TSX
     - [X] TXS
     - [X] PHA
@@ -38,18 +38,18 @@ X# Instruction Support
     - [X] PLA
     - [X] PLP
 
-- [ ] Logical operators
-  - [ ] AND
-  - [ ] EOR
-  - [ ] ORA
-  - [ ] BIT
+- [X] Logical operators
+  - [X] AND
+  - [X] EOR
+  - [X] ORA
+  - [X] BIT
 
-- [ ] Arithmetic operations
-  - [ ] ADC
-  - [ ] SBC
-  - [ ] CMP
-  - [ ] CPX
-  - [ ] CPY
+- [X] Arithmetic operations
+  - [X] ADC
+  - [X] SBC
+  - [X] CMP
+  - [X] CPX
+  - [X] CPY
 
 - [ ] Shifts
   - [ ] ASL

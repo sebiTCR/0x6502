@@ -6,6 +6,7 @@
 Word ABS(CPU* cpu_t, RAM ram_t,  u32 cycles_t); // Absolute
 Word ABX(CPU* cpu_t, RAM ram_t,  u32 cycles_t); // Absolute (relative to) X
 Word ABY(CPU* cpu_t, RAM ram_t,  u32 cycles_t); // Absolute (relative to Y)
+Byte IM (CPU* cpu_t, RAM ram_t,  u32 cycles_t); // Immediate
 Word IND(CPU* cpu_t, RAM ram_t,  u32 cycles_t); // Indirect
 Word INX(CPU* cpu_t, RAM ram_t,  u32 cycles_t); // Indirect (relative to) X
 Word INY(CPU* cpu_t, RAM ram_t,  u32 cycles_t); // Indirect (relative to) Y

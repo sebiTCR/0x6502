@@ -100,6 +100,10 @@ Byte get_addressing_byte(ADDR_MODE adressing_mode_t, CPU* cpu_t, RAM ram_t,  u32
     Byte data;
     switch (adressing_mode_t)
     {
+    case ADDR_MODE::AM_IM:
+        data = IM(cpu_t, ram_t, cycles_t);
+        break;
+
     case ADDR_MODE::AM_ABS:
         data = ABS(cpu_t, ram_t, cycles_t);
         break;

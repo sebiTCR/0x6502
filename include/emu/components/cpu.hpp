@@ -105,4 +105,6 @@ public:
      * @return Word Fetched word from the memory
      */
     Word wfetch(u32 cycles, RAM& ram);
+
+    void set_pc(Word value_t);
 };

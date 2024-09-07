@@ -3,10 +3,7 @@
 
 
 Word ABS(CPU* cpu_t, RAM ram_t,  u32 cycles_t){
-    Byte lo = cpu_t->fetch(cycles_t, ram_t);
-    Byte hi = cpu_t->fetch(cycles_t, ram_t);
-    Word addr = (hi << 8) | lo;
-
+    Word addr = cpu_t->wfetch(cycles_t, ram_t);
     return addr;
 }
 
@@ -191,5 +188,7 @@ Word get_addressing_word(ADDR_MODE adressing_mode_t, CPU* cpu_t, RAM ram_t,  u32
     default:
         break;
     }
+
+    return data;
 }
 

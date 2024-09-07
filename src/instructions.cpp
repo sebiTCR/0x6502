@@ -7,9 +7,8 @@ void Instructions::run_jsr(CPU* cpu, RAM &ram, u32 cycles){
     Word sr_addr = cpu->wfetch(cycles, ram);
     ram.write_word( cycles, cpu->pointers.SP, cpu->pointers.PC - 1);
 
-    cycles--;
     cpu->pointers.PC = sr_addr;
-    cycles--;
+    cycles -= 5;
 }
 
 
@@ -364,9 +363,19 @@ void Instructions::run_cpy(ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 
 }
 
 
-//TBI
-void Instructions::run_jmp(CPU* cpu, RAM &ram, u32 cycles){
+void Instructions::run_jmp(ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles){
+    Word addr = get_addressing_cword(addressing_mode_t, cpu, ram, cycles);
+    cpu->set_pc(addr);
+    cycles -= 2;
+}
 
+void Instructions::run_rts(CPU* cpu, RAM &ram, u32 cycles){
+    Word addr = get_addressing_word(ADDR_MODE::AM_IM, cpu, ram, cycles);
+    ram[cpu->pointers.SP] = cpu->pointers.PC;
+    cpu->pointers.PC = addr;
+
+    cpu->pointers.SP++;
+    cycles -= 5;
 }
 
 

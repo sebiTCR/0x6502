@@ -1,4 +1,5 @@
 #include "emu/components/cpu.hpp"
+#include "emu/components/ram.hpp"
 #include <spdlog/spdlog.h>
 
 CPU::CPU(){
@@ -359,6 +360,22 @@ void CPU::execute(u32 cycles, RAM& mem){
                 instructions->run_cpy(ADDR_MODE::AM_ABS, this, mem, cycles);
                 break;
 
+            case OPCODE_JMP_ABS:
+                instructions->run_jmp(ADDR_MODE::AM_ABS, this, mem, cycles);
+                break;
+
+            case OPCODE_JMP_IN:
+                instructions->run_jmp(ADDR_MODE::AM_IM, this, mem, cycles);
+                break;
+
+            case OPCODE_JSR_ABS:
+                instructions->run_jsr(this, mem, cycles);
+                break;
+
+            case OPCODE_RTS_IM:
+                instructions->run_rts(this, mem, cycles);
+                break;
+
 
             case OPCODE_INX:{
                 instructions->run_inx(this, mem, cycles);
@@ -377,11 +394,6 @@ void CPU::execute(u32 cycles, RAM& mem){
 
             case OPCODE_DEY:{
                 instructions->run_dey(this, mem, cycles);
-                break;
-            }
-
-            case OPCODE_JSR: {
-                instructions->run_jsr(this, mem, cycles);
                 break;
             }
 
@@ -473,11 +485,17 @@ Byte CPU::fetch(u32 cycles, RAM& mem){
 
 Word CPU::wfetch(u32 cycles, RAM& mem){
     Word data = mem[pointers.PC];
-    pointers.PC++;
-    cycles--;
-
-    data |= ( mem[pointers.PC] << 8);
-    pointers.PC++;
-    cycles+=2;
+    Word hi   = mem[pointers.PC + 1];
+    data = (data << 8) | hi;
+    cycles -= 2;
     return data;
+}
+
+
+void CPU::set_pc(Word value_t){
+    if(value_t > RAM::MAX_MEM){
+        spdlog::error("set_pc: PC Value is greater than MAX_MEM!");
+        return;
+    }
+    pointers.PC = value_t;
 }

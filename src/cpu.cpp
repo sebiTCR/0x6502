@@ -449,6 +449,38 @@ void CPU::execute(u32 cycles, RAM& mem){
                 instructions->run_plp(this, mem, cycles);
                 break;
 
+            case OPCODE_BCC:
+                instructions->run_bcc(this, mem, cycles);
+                break;
+
+            case OPCODE_BCS:
+                instructions->run_bcs(this, mem, cycles);
+                break;
+
+            case OPCODE_BEQ:
+                instructions->run_beq(this, mem, cycles);
+                break;
+
+            case OPCODE_BMI:
+                instructions->run_bmi(this, mem, cycles);
+                break;
+
+            case OPCODE_BNE:
+                instructions->run_bne(this, mem, cycles);
+                break;
+
+            case OPCODE_BPL:
+                instructions->run_bpl(this, mem, cycles);
+                break;
+
+            case OPCODE_BVC:
+                instructions->run_bvc(this, mem, cycles);
+                break;
+
+            case OPCODE_BVS:
+                instructions->run_bvs(this, mem, cycles);
+                break;
+                
             default:{
                 if(ins == 0)
                     break;

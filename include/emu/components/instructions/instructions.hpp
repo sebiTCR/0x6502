@@ -124,6 +124,15 @@ static constexpr Byte OPCODE_JMP_IN  = 0x6C;
 static constexpr Byte OPCODE_JSR_ABS = 0x20;
 static constexpr Byte OPCODE_RTS_IM  = 0x60;
 
+static constexpr Byte OPCODE_BCC     = 0x90;
+static constexpr Byte OPCODE_BCS     = 0xB0;
+static constexpr Byte OPCODE_BEQ     = 0xF0;
+static constexpr Byte OPCODE_BMI     = 0x30;
+static constexpr Byte OPCODE_BNE     = 0xD0;
+static constexpr Byte OPCODE_BPL     = 0x10;
+static constexpr Byte OPCODE_BVC     = 0x50;
+static constexpr Byte OPCODE_BVS     = 0x70;
+
 
 static constexpr Byte OPCODE_BIT_ZP  = 0x24;
 static constexpr Byte OPCODE_BIT_ABS = 0x2C;
@@ -198,5 +207,14 @@ public:
     void run_php     (CPU* cpu, RAM &ram, u32 cycles);
     void run_pla     (CPU* cpu, RAM &ram, u32 cycles);
     void run_plp     (CPU* cpu, RAM &ram, u32 cycles);
+
+    void run_bcc    (CPU* cpu, RAM &ram, u32 cycles);
+    void run_bcs    (CPU* cpu, RAM &ram, u32 cycles);
+    void run_beq    (CPU* cpu, RAM &ram, u32 cycles);
+    void run_bmi    (CPU* cpu, RAM &ram, u32 cycles);
+    void run_bne    (CPU* cpu, RAM &ram, u32 cycles);
+    void run_bpl    (CPU* cpu, RAM &ram, u32 cycles);
+    void run_bvc    (CPU* cpu, RAM &ram, u32 cycles);
+    void run_bvs    (CPU* cpu, RAM &ram, u32 cycles);
 
 };

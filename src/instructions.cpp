@@ -364,7 +364,7 @@ void Instructions::run_cpy(ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 
 
 
 void Instructions::run_jmp(ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles){
-    Word addr = get_addressing_cword(addressing_mode_t, cpu, ram, cycles);
+    Word addr = get_addressing_word(addressing_mode_t, cpu, ram, cycles);
     cpu->set_pc(addr);
     cycles -= 2;
 }
@@ -433,3 +433,100 @@ void Instructions::run_clv(CPU* cpu, RAM &ram, u32 cycles){
     cpu->registers.V   = 0;
     cycles -= 2;
 }
+
+
+//TODO: Do one more cycle if new page
+void Instructions::run_bcc(CPU* cpu, RAM &ram, u32 cycles){
+    cycles -= 2;
+
+    if(cpu->registers.C)
+        return;
+    Word addr = get_addressing_word(ADDR_MODE::AM_IM, cpu, ram, cycles);
+    cpu->set_pc(addr);
+    cycles -= 1;
+}
+
+
+//TODO: Do one more cycle if new page
+void Instructions::run_bcs(CPU* cpu, RAM &ram, u32 cycles){
+    cycles -= 2;
+
+    if(!cpu->registers.C)
+        return;
+    Word addr = get_addressing_word(ADDR_MODE::AM_IM, cpu, ram, cycles);
+    cpu->set_pc(addr);
+    cycles -= 1;
+}
+
+
+//TODO: Do one more cycle if new page
+void Instructions::run_beq(CPU* cpu, RAM &ram, u32 cycles){
+    cycles -= 2;
+
+    if(!cpu->registers.Z)
+        return;
+    Word addr = get_addressing_word(ADDR_MODE::AM_IM, cpu, ram, cycles);
+    cpu->set_pc(addr);
+    cycles -= 1;
+}
+
+
+//TODO: Do one more cycle if new page
+void Instructions::run_bmi(CPU* cpu, RAM &ram, u32 cycles){
+    cycles -= 2;
+
+    if(!cpu->registers.N)
+        return;
+    Word addr = get_addressing_word(ADDR_MODE::AM_IM, cpu, ram, cycles);
+    cpu->set_pc(addr);
+    cycles -= 1;
+}
+
+
+//TODO: Do one more cycle if new page
+void Instructions::run_bne(CPU* cpu, RAM &ram, u32 cycles){
+    cycles -= 2;
+
+    if(cpu->registers.Z)
+        return;
+    Word addr = get_addressing_word(ADDR_MODE::AM_IM, cpu, ram, cycles);
+    cpu->set_pc(addr);
+    cycles -= 1;
+}
+
+
+//TODO: Do one more cycle if new page
+void Instructions::run_bpl(CPU* cpu, RAM &ram, u32 cycles){
+    cycles -= 2;
+
+    if(cpu->registers.Z)
+        return;
+    Word addr = get_addressing_word(ADDR_MODE::AM_IM, cpu, ram, cycles);
+    cpu->set_pc(addr);
+    cycles -= 1;
+}
+
+
+//TODO: Do one more cycle if new page
+void Instructions::run_bvc(CPU* cpu, RAM &ram, u32 cycles){
+    cycles -= 2;
+
+    if(cpu->registers.V)
+        return;
+    Word addr = get_addressing_word(ADDR_MODE::AM_IM, cpu, ram, cycles);
+    cpu->set_pc(addr);
+    cycles -= 1;
+}
+
+
+//TODO: Do one more cycle if new page
+void Instructions::run_bvs(CPU* cpu, RAM &ram, u32 cycles){
+    cycles -= 2;
+
+    if(!cpu->registers.V)
+        return;
+    Word addr = get_addressing_word(ADDR_MODE::AM_IM, cpu, ram, cycles);
+    cpu->set_pc(addr);
+    cycles -= 1;
+}
+

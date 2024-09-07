@@ -57,10 +57,10 @@ X# Instruction Support
   - [ ] ROL
   - [ ] ROR
 
-- [ ] Jumps & Calls
-  - [ ] JMP
-  - [ ] JSR
-  - [ ] RTS
+- [X] Jumps & Calls
+  - [X] JMP
+  - [X] JSR
+  - [X] RTS
 
 - [ ] Branches
   - [ ] BCC

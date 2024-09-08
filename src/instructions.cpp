@@ -530,3 +530,25 @@ void Instructions::run_bvs(CPU* cpu, RAM &ram, u32 cycles){
     cycles -= 1;
 }
 
+
+//TODO: Add Word handling, not just bit handling
+void Instructions::run_rol(ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles){
+    Word shift_size = 0x01;
+    if(addressing_mode_t != ADDR_MODE::AM_IM){
+        shift_size = get_addressing_byte(addressing_mode_t, cpu, ram, cycles);
+    }
+    cpu->registers.C   = cpu->registers.ACC & 0b10000000;
+    cpu->registers.ACC = (cpu->registers.ACC << 1) | (cpu->registers.C >> 7) ;
+}
+
+
+//TODO: Add Word handling, not just bit handling
+void Instructions::run_ror(ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles){
+    Word shift_size = 0x01;
+    if(addressing_mode_t != ADDR_MODE::AM_IM){
+        shift_size = get_addressing_byte(addressing_mode_t, cpu, ram, cycles);
+    }
+    cpu->registers.C   = cpu->registers.ACC & 0b00000001;
+    cpu->registers.ACC = (cpu->registers.ACC >> 1) | (cpu->registers.C << 7) ;
+}
+

@@ -368,6 +368,14 @@ void CPU::execute(u32 cycles, RAM& mem){
                 instructions->run_jmp(ADDR_MODE::AM_IM, this, mem, cycles);
                 break;
 
+            case OPCODE_ROR:
+                instructions->run_ror(ADDR_MODE::AM_IM, this, mem, cycles);
+                break;
+
+            case OPCODE_ROL:
+                instructions->run_rol(ADDR_MODE::AM_IM, this, mem, cycles);
+                break;
+
             case OPCODE_JSR_ABS:
                 instructions->run_jsr(this, mem, cycles);
                 break;

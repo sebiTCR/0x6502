@@ -133,6 +133,29 @@ static constexpr Byte OPCODE_BPL     = 0x10;
 static constexpr Byte OPCODE_BVC     = 0x50;
 static constexpr Byte OPCODE_BVS     = 0x70;
 
+static constexpr Byte OPCODE_ASL     = 0x0A;
+static constexpr Byte OPCODE_ASL_ZP0 = 0x06;
+static constexpr Byte OPCODE_ASL_ZPX = 0x16;
+static constexpr Byte OPCODE_ASL_ABS = 0x0E;
+static constexpr Byte OPCODE_ASL_ABX = 0x1E;
+
+static constexpr Byte OPCODE_ROL     = 0x2A;
+static constexpr Byte OPCODE_ROL_ZP0 = 0x26;
+static constexpr Byte OPCODE_ROL_ZPX = 0x36;
+static constexpr Byte OPCODE_ROL_ABS = 0x2E;
+static constexpr Byte OPCODE_ROL_ABX = 0x3E;
+
+static constexpr Byte OPCODE_ROR     = 0x6A;
+static constexpr Byte OPCODE_ROR_ZP0 = 0x66;
+static constexpr Byte OPCODE_ROR_ZPX = 0x76;
+static constexpr Byte OPCODE_ROR_ABS = 0x6E;
+static constexpr Byte OPCODE_ROR_ABX = 0x7E;
+
+static constexpr Byte OPCODE_LSR     = 0x4A;
+static constexpr Byte OPCODE_LSR_ZP0 = 0x46;
+static constexpr Byte OPCODE_LSR_ZPX = 0x56;
+static constexpr Byte OPCODE_LSR_ABS = 0x4E;
+static constexpr Byte OPCODE_LSR_ABX = 0x5E;
 
 static constexpr Byte OPCODE_BIT_ZP  = 0x24;
 static constexpr Byte OPCODE_BIT_ABS = 0x2C;
@@ -180,6 +203,11 @@ public:
     void run_cmp     (ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles);
     void run_cpx     (ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles);
     void run_cpy     (ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles);
+
+    void run_rol     (ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles);
+    void run_ror     (ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles);
+    void run_lsr     (ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles);
+    void run_asl     (ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles);
 
     void run_jmp     (ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles);
     void run_jsr     (CPU* cpu, RAM &ram, u32 cycles);

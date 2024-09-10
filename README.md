@@ -20,5 +20,5 @@ Since the GUI uses OpenGL, you might have issues running the emulator on MacOS.
   - Can I load my own ROMs?
     - Not yet, but you will soon. The current ROM implementation is not currently able to load everything into memory due to bugs, but it will pretty soon. Until then you'll have to manually type the [opcodes](http://www.6502.org/users/obelisk/6502/instructions.html).
   - Where can I see the ***supported instructions***?
-    - Have a look at the [supported instructions list.](./docs/InstructionsSupport.md) 
+    - Have a look at the [supported instructions list.](https://docs.google.com/spreadsheets/d/1S0kfK5vRL3jtGiEGcZwAOnh8Pw50EiYZSD0oXowzE6E/edit?usp=sharing) 
   

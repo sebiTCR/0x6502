@@ -530,3 +530,55 @@ void Instructions::run_bvs(CPU* cpu, RAM &ram, u32 cycles){
     cycles -= 1;
 }
 
+
+//TODO: Add Word handling, not just bit handling
+//FIXME: Fix addressing modes
+//FIXME: Fix flagging
+void Instructions::run_rol(ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles){
+    Word shift_size = 0x01;
+    if(addressing_mode_t != ADDR_MODE::AM_IM){
+        shift_size = get_addressing_byte(addressing_mode_t, cpu, ram, cycles);
+    }
+    cpu->registers.C   = cpu->registers.ACC & 0b10000000;
+    cpu->registers.ACC = (cpu->registers.ACC << 1) | (cpu->registers.C >> 7) ;
+}
+
+
+//TODO: Add Word handling, not just bit handling
+//FIXME: Fix addressing modes
+//FIXME: Fix flagging
+void Instructions::run_ror(ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles){
+    Word shift_size = 0x01;
+    if(addressing_mode_t != ADDR_MODE::AM_IM){
+        shift_size = get_addressing_byte(addressing_mode_t, cpu, ram, cycles);
+    }
+    cpu->registers.C   = cpu->registers.ACC & 0b00000001;
+    cpu->registers.ACC = (cpu->registers.ACC >> 1) | (cpu->registers.C << 7) ;
+}
+
+
+//TODO: Add Word handling, not just bit handling
+//FIXME: Fix addressing modes
+//FIXME: Fix flagging
+void Instructions::run_lsr(ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles){
+    Byte* data = &cpu->registers.ACC;
+    if(addressing_mode_t != ADDR_MODE::AM_IM){
+        *data = get_addressing_byte(addressing_mode_t, cpu, ram, cycles);
+    }
+    cpu->registers.C   = *data & 0b00000001;
+    Byte temp = *data;
+    *data = *data >> 1;
+}
+
+
+//TODO: Add Word handling, not just bit handling
+//FIXME: Fix addressing modes
+//FIXME: Fix flagging
+void Instructions::run_asl(ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles){
+    Word shift_size = 0x01;
+    if(addressing_mode_t != ADDR_MODE::AM_IM){
+        shift_size = get_addressing_byte(addressing_mode_t, cpu, ram, cycles);
+    }
+    cpu->registers.C   = cpu->registers.ACC & 0b10000000;
+    cpu->registers.ACC = cpu->registers.ACC << 1;
+}

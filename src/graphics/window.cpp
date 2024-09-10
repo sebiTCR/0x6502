@@ -100,7 +100,7 @@ void Window::render_widgets(CPU &cpu_t, RAM &mem_t, ROM &rom_t){
     //Registries Window
     ImGui::Begin("CPU: Registries");
         ImGui::SeparatorText("Registries");
-        ImGui::Text("Accumulator: (%d)",        cpu_t.registers.ACC);
+        ImGui::Text("Accumulator: %d (0x%04X)", cpu_t.registers.ACC, cpu_t.registers.ACC);
         ImGui::Text("X: (%d)",                  cpu_t.registers.X);
         ImGui::Text("Y: (%d)",                  cpu_t.registers.Y);
         

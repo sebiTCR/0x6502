@@ -368,6 +368,88 @@ void CPU::execute(u32 cycles, RAM& mem){
                 instructions->run_jmp(ADDR_MODE::AM_IM, this, mem, cycles);
                 break;
 
+            case OPCODE_ROR:
+                instructions->run_ror(ADDR_MODE::AM_IM, this, mem, cycles);
+                break;
+
+            case OPCODE_ROR_ZP0:
+                instructions->run_ror(ADDR_MODE::AM_ZP0, this, mem, cycles);
+                break;
+                
+            case OPCODE_ROR_ZPX:
+                instructions->run_ror(ADDR_MODE::AM_ZPX, this, mem, cycles);
+                break;
+                
+            case OPCODE_ROR_ABS:
+                instructions->run_ror(ADDR_MODE::AM_ABS, this, mem, cycles);
+                break;
+                
+            case OPCODE_ROR_ABX:
+                instructions->run_ror(ADDR_MODE::AM_ABX, this, mem, cycles);
+                break;
+
+            case OPCODE_ROL:
+                instructions->run_rol(ADDR_MODE::AM_IM, this, mem, cycles);
+                break;
+
+            case OPCODE_ROL_ZP0:
+                instructions->run_rol(ADDR_MODE::AM_ZP0, this, mem, cycles);
+                break;
+
+            case OPCODE_ROL_ZPX:
+                instructions->run_rol(ADDR_MODE::AM_ZPX, this, mem, cycles);
+                break;
+
+            case OPCODE_ROL_ABS:
+                instructions->run_rol(ADDR_MODE::AM_ABS, this, mem, cycles);
+                break;
+
+            case OPCODE_ROL_ABX:
+                instructions->run_rol(ADDR_MODE::AM_ABX, this, mem, cycles);
+                break;
+
+            
+            case OPCODE_LSR:
+                instructions->run_lsr(ADDR_MODE::AM_IM, this, mem, cycles);
+                break;
+
+            case OPCODE_LSR_ZP0:
+                instructions->run_lsr(ADDR_MODE::AM_ZP0, this, mem, cycles);
+                break;
+
+            case OPCODE_LSR_ZPX:
+                instructions->run_lsr(ADDR_MODE::AM_ZPX, this, mem, cycles);
+                break;
+
+            case OPCODE_LSR_ABS:
+                instructions->run_lsr(ADDR_MODE::AM_ABS, this, mem, cycles);
+                break;
+
+            case OPCODE_LSR_ABX:
+                instructions->run_lsr(ADDR_MODE::AM_ABX, this, mem, cycles);
+                break;
+
+            case OPCODE_ASL:
+                instructions->run_asl(ADDR_MODE::AM_IM, this, mem, cycles);
+                break;
+            
+            case OPCODE_ASL_ZP0:
+                instructions->run_asl(ADDR_MODE::AM_ZP0, this, mem, cycles);
+                break;
+
+            case OPCODE_ASL_ZPX:
+                instructions->run_asl(ADDR_MODE::AM_ZPX, this, mem, cycles);
+                break;
+
+            case OPCODE_ASL_ABS:
+                instructions->run_asl(ADDR_MODE::AM_ABS, this, mem, cycles);
+                break;
+
+            case OPCODE_ASL_ABX:
+                instructions->run_asl(ADDR_MODE::AM_ABX, this, mem, cycles);
+                break;
+
+
             case OPCODE_JSR_ABS:
                 instructions->run_jsr(this, mem, cycles);
                 break;

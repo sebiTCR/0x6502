@@ -378,6 +378,72 @@ void Instructions::run_rts(CPU* cpu, RAM &ram, u32 cycles){
     cycles -= 5;
 }
 
+//TODO: Find a better way to manage cycles
+void Instructions::run_inc(ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles){
+    Word addr = get_addressing_word(addressing_mode_t, cpu, ram, cycles);
+    ram[addr] += 1;
+
+    if(ram[addr] & 0b00000010)
+        cpu->registers.N = 1;
+    if(ram[addr] == 0x0)
+        cpu->registers.Z = 1;
+
+    switch (addr)
+    {
+    case ADDR_MODE::AM_ZP0:
+        cycles -= 3;
+        break;
+
+    case ADDR_MODE::AM_ZPX:
+        cycles -= 4;
+        break;
+
+    case ADDR_MODE::AM_ABS:
+        cycles -= 4;
+        break;
+
+    case ADDR_MODE::AM_ABX:
+        cycles -= 5;
+        break;
+
+    default:
+        break;
+    }
+}
+
+//TODO: Find a better way to manage cycles
+void Instructions::run_dec(ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles){
+    Word addr = get_addressing_word(addressing_mode_t, cpu, ram, cycles);
+    ram[addr] -= 1;
+
+    if(ram[addr] & 0b00000010)
+        cpu->registers.N = 1;
+    if(ram[addr] == 0x0)
+        cpu->registers.Z = 1;
+
+    switch (addr)
+    {
+    case ADDR_MODE::AM_ZP0:
+        cycles -= 3;
+        break;
+
+    case ADDR_MODE::AM_ZPX:
+        cycles -= 4;
+        break;
+
+    case ADDR_MODE::AM_ABS:
+        cycles -= 4;
+        break;
+
+    case ADDR_MODE::AM_ABX:
+        cycles -= 5;
+        break;
+
+    default:
+        break;
+    }
+}
+
 
 void Instructions::run_inx(CPU* cpu, RAM &ram, u32 cycles){
     cpu->registers.X++;

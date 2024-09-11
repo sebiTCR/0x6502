@@ -458,6 +458,38 @@ void CPU::execute(u32 cycles, RAM& mem){
                 instructions->run_rts(this, mem, cycles);
                 break;
 
+            case OPCODE_INC_ZP0:
+                instructions->run_inc(ADDR_MODE::AM_ZP0, this, mem, cycles);
+                break;
+
+            case OPCODE_INC_ZPX:
+                instructions->run_inc(ADDR_MODE::AM_ZPX, this, mem, cycles);
+                break;
+
+            case OPCODE_INC_ABS:
+                instructions->run_inc(ADDR_MODE::AM_ABS, this, mem, cycles);
+                break;
+
+            case OPCODE_INC_ABX:
+                instructions->run_inc(ADDR_MODE::AM_ABX, this, mem, cycles);
+                break;
+
+            case OPCODE_DEC_ZP0:
+                instructions->run_dec(ADDR_MODE::AM_ZP0, this, mem, cycles);
+                break;
+
+            case OPCODE_DEC_ZPX:
+                instructions->run_dec(ADDR_MODE::AM_ZPX, this, mem, cycles);
+                break;
+
+            case OPCODE_DEC_ABS:
+                instructions->run_dec(ADDR_MODE::AM_ABS, this, mem, cycles);
+                break;
+
+            case OPCODE_DEC_ABX:
+                instructions->run_dec(ADDR_MODE::AM_ABX, this, mem, cycles);
+                break;
+
 
             case OPCODE_INX:{
                 instructions->run_inx(this, mem, cycles);
@@ -602,6 +634,8 @@ Word CPU::wfetch(u32 cycles, RAM& mem){
     Word hi   = mem[pointers.PC + 1];
     data = (data << 8) | hi;
     cycles -= 2;
+
+    pointers.PC += 2;
     return data;
 }
 

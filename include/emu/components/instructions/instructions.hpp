@@ -33,6 +33,16 @@ static constexpr Byte OPCODE_STY_ZP  = 0x04;
 static constexpr Byte OPCODE_STY_ZPX = 0x94;
 static constexpr Byte OPCODE_STY_ABS = 0x8c;
 
+static constexpr Byte OPCODE_INC_ZP0 = 0xE6;
+static constexpr Byte OPCODE_INC_ZPX = 0xF6;
+static constexpr Byte OPCODE_INC_ABS = 0xEE;
+static constexpr Byte OPCODE_INC_ABX = 0xFE;
+
+static constexpr Byte OPCODE_DEC_ZP0 = 0xC6;
+static constexpr Byte OPCODE_DEC_ZPX = 0xD6;
+static constexpr Byte OPCODE_DEC_ABS = 0xCE;
+static constexpr Byte OPCODE_DEC_ABX = 0xDE;
+
 static constexpr Byte OPCODE_INX     = 0xE8;
 static constexpr Byte OPCODE_INY     = 0xC8;
 
@@ -210,6 +220,11 @@ public:
     void run_asl     (ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles);
 
     void run_jmp     (ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles);
+
+    void run_inc     (ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles);
+    void run_dec     (ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles);
+
+
     void run_jsr     (CPU* cpu, RAM &ram, u32 cycles);
     void run_rts     (CPU* cpu, RAM &ram, u32 cycles);
 

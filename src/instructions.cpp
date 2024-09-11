@@ -303,8 +303,24 @@ void Instructions::run_ora(ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 
 
 void Instructions::run_bit(ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 cycles){
     Byte value = get_addressing_byte(addressing_mode_t, cpu, ram, cycles);
-    //TODO: IMplement bit
-    //TODO: Add cycle
+    if(value & cpu->registers.ACC)
+        cpu->registers.Z = 1;
+    cpu->registers.V = (value & 0b00000100) << 6;
+    cpu->registers.N = (value & 0b00000010) << 7;
+
+    switch (addressing_mode_t)
+    {
+    case ADDR_MODE::AM_ZP0 :
+        cycles -= 1;
+        break;
+    
+    case ADDR_MODE::AM_ABS :
+        cycles -= 2;
+        break;
+
+    default:
+        break;
+    }
 }
 
 

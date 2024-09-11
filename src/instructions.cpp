@@ -666,3 +666,8 @@ void Instructions::run_asl(ADDR_MODE addressing_mode_t, CPU* cpu, RAM &ram, u32 
     cpu->registers.C   = cpu->registers.ACC & 0b10000000;
     cpu->registers.ACC = cpu->registers.ACC << 1;
 }
+
+
+void Instructions::run_nop(u32 cycles){
+    cycles -= 2;
+}

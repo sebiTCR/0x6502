@@ -594,6 +594,9 @@ void CPU::execute(u32 cycles, RAM& mem){
             case OPCODE_BVS:
                 instructions->run_bvs(this, mem, cycles);
                 break;
+
+            case OPCODE_NOP:
+                instructions->run_nop(cycles);
                 
             default:{
                 if(ins == 0)

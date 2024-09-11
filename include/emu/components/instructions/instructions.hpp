@@ -170,6 +170,8 @@ static constexpr Byte OPCODE_LSR_ABX = 0x5E;
 static constexpr Byte OPCODE_BIT_ZP  = 0x24;
 static constexpr Byte OPCODE_BIT_ABS = 0x2C;
 
+static constexpr Byte OPCODE_NOP     = 0xEA;
+
 
 class CPU; // Dummy
 
@@ -259,5 +261,7 @@ public:
     void run_bpl    (CPU* cpu, RAM &ram, u32 cycles);
     void run_bvc    (CPU* cpu, RAM &ram, u32 cycles);
     void run_bvs    (CPU* cpu, RAM &ram, u32 cycles);
+
+    void run_nop    (u32 cycles);
 
 };

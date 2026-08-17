@@ -456,7 +456,7 @@ void Instructions::run_clv(CPU* cpu, RAM &ram, u32 cycles){
 
 //TODO: Do one more cycle if new page
 void Instructions::run_bcc(CPU* cpu, RAM &ram, u32 cycles){
-    s8 offset = (s8)cpu->fetch(cycles, ram);
+    Byte offset = cpu->fetch(cycles, ram);
     if(!cpu->registers.C){
         Word old_pc = cpu->pointers.PC;
         cpu->pointers.PC += offset;
@@ -469,7 +469,7 @@ void Instructions::run_bcc(CPU* cpu, RAM &ram, u32 cycles){
 
 //TODO: Do one more cycle if new page
 void Instructions::run_bcs(CPU* cpu, RAM &ram, u32 cycles){
-    s8 offset = (s8)cpu->fetch(cycles, ram);
+    Byte offset = cpu->fetch(cycles, ram);
     if(cpu->registers.C){
         Word old_pc = cpu->pointers.PC;
         cpu->pointers.PC += offset;
@@ -482,7 +482,7 @@ void Instructions::run_bcs(CPU* cpu, RAM &ram, u32 cycles){
 
 //TODO: Do one more cycle if new page
 void Instructions::run_beq(CPU* cpu, RAM &ram, u32 cycles){
-    s8 offset = (s8)cpu->fetch(cycles, ram);
+    Byte offset = cpu->fetch(cycles, ram);
     if(cpu->registers.Z){
         Word old_pc = cpu->pointers.PC;
         cpu->pointers.PC += offset;
@@ -495,7 +495,7 @@ void Instructions::run_beq(CPU* cpu, RAM &ram, u32 cycles){
 
 //TODO: Do one more cycle if new page
 void Instructions::run_bmi(CPU* cpu, RAM &ram, u32 cycles){
-    s8 offset = (s8)cpu->fetch(cycles, ram);
+    Byte offset = cpu->fetch(cycles, ram);
     if(cpu->registers.N){
         Word old_pc = cpu->pointers.PC;
         cpu->pointers.PC += offset;
@@ -508,7 +508,7 @@ void Instructions::run_bmi(CPU* cpu, RAM &ram, u32 cycles){
 
 //TODO: Do one more cycle if new page
 void Instructions::run_bne(CPU* cpu, RAM &ram, u32 cycles){
-    s8 offset = (s8)cpu->fetch(cycles, ram);
+    Byte offset = cpu->fetch(cycles, ram);
     if(!cpu->registers.Z){
         Word old_pc = cpu->pointers.PC;
         cpu->pointers.PC += offset;
@@ -521,7 +521,7 @@ void Instructions::run_bne(CPU* cpu, RAM &ram, u32 cycles){
 
 //TODO: Do one more cycle if new page
 void Instructions::run_bpl(CPU* cpu, RAM &ram, u32 cycles){
-    s8 offset = (s8)cpu->fetch(cycles, ram);
+    Byte offset = cpu->fetch(cycles, ram);
     if(!cpu->registers.N){
         Word old_pc = cpu->pointers.PC;
         cpu->pointers.PC += offset;
@@ -534,7 +534,7 @@ void Instructions::run_bpl(CPU* cpu, RAM &ram, u32 cycles){
 
 //TODO: Do one more cycle if new page
 void Instructions::run_bvc(CPU* cpu, RAM &ram, u32 cycles){
-    s8 offset = (s8)cpu->fetch(cycles, ram);
+    Byte offset = cpu->fetch(cycles, ram);
     if(!cpu->registers.V){
         Word old_pc = cpu->pointers.PC;
         cpu->pointers.PC += offset;
@@ -547,7 +547,7 @@ void Instructions::run_bvc(CPU* cpu, RAM &ram, u32 cycles){
 
 //TODO: Do one more cycle if new page
 void Instructions::run_bvs(CPU* cpu, RAM &ram, u32 cycles){
-    s8 offset = (s8)cpu->fetch(cycles, ram);
+    int offset = cpu->fetch(cycles, ram);
     if(cpu->registers.V){
         Word old_pc = cpu->pointers.PC;
         cpu->pointers.PC += offset;

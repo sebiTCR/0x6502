@@ -9,7 +9,6 @@ ROM::~ROM(){}
 
 void ROM::parse_file(std::string filename_t){
     std::ifstream romfile(filename_t, std::ios::binary); 
-    int i = 0;
     char byte;
 
     spdlog::info("Reading rom file...");

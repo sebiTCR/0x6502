@@ -61,7 +61,10 @@ void Window::m_initialize_imgui(){
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
     ImGuiIO& io = ImGui::GetIO(); (void)io;
-    
+
+    io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
+    io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+    io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
 
     if(!(ImGui_ImplGlfw_InitForOpenGL(m_window, true) && ImGui_ImplOpenGL3_Init())){
         spdlog::error("Failed to initialize ImGui!");
@@ -83,6 +86,8 @@ void Window::render(CPU &cpu_t, RAM &mem_t, ROM &rom_t){
     ImGui_ImplOpenGL3_NewFrame();
     ImGui_ImplGlfw_NewFrame();
     ImGui::NewFrame();
+
+    ImGui::DockSpaceOverViewport(0, ImGui::GetMainViewport());
 
     render_widgets(cpu_t, mem_t, rom_t);
     ImGui::Render();

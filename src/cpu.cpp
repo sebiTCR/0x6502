@@ -47,77 +47,77 @@ void CPU::execute(u32 cycles, RAM& mem){
 
             case OPCODE_LDA_ABS:{
                 instructions->run_lda_abs(this, mem, cycles);
-                break;    
+                break;
             }
 
             case OPCODE_LDA_ABX:{
                 instructions->run_lda_abx(this, mem, cycles);
-                break;    
+                break;
             }
 
             case OPCODE_LDA_ABY:{
-                instructions->run_lda_aby(this, mem, cycles); 
-                break;   
+                instructions->run_lda_aby(this, mem, cycles);
+                break;
             }
 
             case OPCODE_LDA_INX:{
                 instructions->run_lda_inx(this, mem, cycles);
-                break;    
+                break;
             }
 
             case OPCODE_LDA_INY:{
-                instructions->run_lda_iny(this, mem, cycles); 
-                break;   
+                instructions->run_lda_iny(this, mem, cycles);
+                break;
             }
 
             case OPCODE_LDX_IM:{
-                instructions->run_ldx_im(this, mem, cycles); 
-                break;   
+                instructions->run_ldx_im(this, mem, cycles);
+                break;
             }
 
             case OPCODE_LDX_ZP:{
-                instructions->run_ldx_zp(this, mem, cycles);  
-                break;  
+                instructions->run_ldx_zp(this, mem, cycles);
+                break;
             }
 
             case OPCODE_LDX_ZPY:{
-                instructions->run_ldx_zpy(this, mem, cycles);  
-                break;  
+                instructions->run_ldx_zpy(this, mem, cycles);
+                break;
             }
 
             case OPCODE_LDX_ABS:{
                 instructions->run_ldx_abs(this, mem, cycles);
-                break;   
+                break;
             }
 
             case OPCODE_LDX_ABY:{
-                instructions->run_ldx_aby(this, mem, cycles); 
-                break;   
+                instructions->run_ldx_aby(this, mem, cycles);
+                break;
             }
 
             case OPCODE_LDY_IM:{
-                instructions->run_ldy_im(this, mem, cycles);   
-                break; 
+                instructions->run_ldy_im(this, mem, cycles);
+                break;
             }
 
             case OPCODE_LDY_ZP:{
-                instructions->run_ldy_zp(this, mem, cycles); 
-                break;   
+                instructions->run_ldy_zp(this, mem, cycles);
+                break;
             }
 
             case OPCODE_LDY_ZPX:{
-                instructions->run_ldy_zpx(this, mem, cycles);  
-                break;  
+                instructions->run_ldy_zpx(this, mem, cycles);
+                break;
             }
 
             case OPCODE_LDY_ABS:{
-                instructions->run_ldy_abs(this, mem, cycles);   
-                break; 
+                instructions->run_ldy_abs(this, mem, cycles);
+                break;
             }
 
             case OPCODE_LDY_ABX:{
-                instructions->run_ldy_abx(this, mem, cycles); 
-                break;   
+                instructions->run_ldy_abx(this, mem, cycles);
+                break;
             }
 
             case OPCODE_STX_ABS:
@@ -147,7 +147,7 @@ void CPU::execute(u32 cycles, RAM& mem){
             case OPCODE_AND_IM:
                 instructions->run_and(ADDR_MODE::AM_IM, this, mem, cycles);
                 break;
-    
+
             case OPCODE_AND_ZP:
                 instructions->run_and(ADDR_MODE::AM_ZP0, this, mem, cycles);
                 break;
@@ -203,11 +203,11 @@ void CPU::execute(u32 cycles, RAM& mem){
 
             case OPCODE_ORA_IM:
                 instructions->run_ora(ADDR_MODE::AM_IM, this, mem, cycles);
-                break; 
+                break;
 
             case OPCODE_ORA_ZP:
                 instructions->run_ora(ADDR_MODE::AM_ZP0, this, mem, cycles);
-                break; 
+                break;
 
             case OPCODE_ORA_ZPX:
                 instructions->run_ora(ADDR_MODE::AM_ZPX, this, mem, cycles);
@@ -231,7 +231,7 @@ void CPU::execute(u32 cycles, RAM& mem){
 
             case OPCODE_ORA_INY:
                 instructions->run_ora(ADDR_MODE::AM_INY, this, mem, cycles);
-                break;                
+                break;
 
             case OPCODE_BIT_ZP:
                 instructions->run_bit(ADDR_MODE::AM_ZP0, this, mem, cycles);
@@ -338,24 +338,24 @@ void CPU::execute(u32 cycles, RAM& mem){
 
             case OPCODE_CPX_IM:
                 instructions->run_cpx(ADDR_MODE::AM_IM, this, mem, cycles);
-                break;           
-            
+                break;
+
             case OPCODE_CPX_ZP:
                 instructions->run_cpx(ADDR_MODE::AM_ZP0, this, mem, cycles);
                 break;
-            
+
             case OPCODE_CPX_ABS:
                 instructions->run_cpx(ADDR_MODE::AM_ABS, this, mem, cycles);
                 break;
 
             case OPCODE_CPY_IM:
                 instructions->run_cpy(ADDR_MODE::AM_IM, this, mem, cycles);
-                break;           
-            
+                break;
+
             case OPCODE_CPY_ZP:
                 instructions->run_cpy(ADDR_MODE::AM_ZP0, this, mem, cycles);
                 break;
-            
+
             case OPCODE_CPY_ABS:
                 instructions->run_cpy(ADDR_MODE::AM_ABS, this, mem, cycles);
                 break;
@@ -375,15 +375,15 @@ void CPU::execute(u32 cycles, RAM& mem){
             case OPCODE_ROR_ZP0:
                 instructions->run_ror(ADDR_MODE::AM_ZP0, this, mem, cycles);
                 break;
-                
+
             case OPCODE_ROR_ZPX:
                 instructions->run_ror(ADDR_MODE::AM_ZPX, this, mem, cycles);
                 break;
-                
+
             case OPCODE_ROR_ABS:
                 instructions->run_ror(ADDR_MODE::AM_ABS, this, mem, cycles);
                 break;
-                
+
             case OPCODE_ROR_ABX:
                 instructions->run_ror(ADDR_MODE::AM_ABX, this, mem, cycles);
                 break;
@@ -408,7 +408,7 @@ void CPU::execute(u32 cycles, RAM& mem){
                 instructions->run_rol(ADDR_MODE::AM_ABX, this, mem, cycles);
                 break;
 
-            
+
             case OPCODE_LSR:
                 instructions->run_lsr(ADDR_MODE::AM_IM, this, mem, cycles);
                 break;
@@ -432,7 +432,7 @@ void CPU::execute(u32 cycles, RAM& mem){
             case OPCODE_ASL:
                 instructions->run_asl(ADDR_MODE::AM_IM, this, mem, cycles);
                 break;
-            
+
             case OPCODE_ASL_ZP0:
                 instructions->run_asl(ADDR_MODE::AM_ZP0, this, mem, cycles);
                 break;
@@ -545,10 +545,10 @@ void CPU::execute(u32 cycles, RAM& mem){
                 break;
             case OPCODE_TXS:
                 instructions->run_txs(this, mem, cycles);
-                break;    
+                break;
             case OPCODE_TYA:
                 instructions->run_tya(this, mem, cycles);
-                break;            
+                break;
 
             case OPCODE_PHA:
                 instructions->run_pha(this, mem, cycles);
@@ -597,7 +597,8 @@ void CPU::execute(u32 cycles, RAM& mem){
 
             case OPCODE_NOP:
                 instructions->run_nop(cycles);
-                
+                break;
+
             default:{
                 if(ins == 0)
                     break;
